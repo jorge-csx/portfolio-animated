@@ -1,3 +1,16 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+@layer utilities{
+    .code-highlight{
+        border-radius: 0.25rem;
+        padding: 0.125rem 0.1875rem;
+        margin: 0 -0.1875rem;
+    }
+    .bg-code-highlight{
+        background-color: rgb(207 250 254 / 1);
+        color: rgb(34 211 238 / 1);
+        font-weight: 500;
+    }
+}

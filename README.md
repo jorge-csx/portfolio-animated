@@ -4,3 +4,4 @@ Experimental portfolio to share my recent works.
 ## Building with
 * React
 * Tailwind
+* Boxicons
