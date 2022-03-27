@@ -1,8 +1,9 @@
+
 function Projects(){
     return (
-        <div id="projects" className="w-full h-screen">
-            Projects
-        </div>
+        <section id="projects" className="w-full h-screen flex">
+
+        </section>
     )
 }
 

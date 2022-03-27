@@ -9,8 +9,14 @@
         margin: 0 -0.1875rem;
     }
     .bg-code-highlight{
-        background-color: rgb(207 250 254 / 1);
-        color: rgb(34 211 238 / 1);
+        background-color: rgb(207 250 254 / 1); /* #CFFAFE | cyan-100 */
+        color: rgb(34 211 238 / 1);             /* #22D3EE | cyan-400 */
         font-weight: 500;
     }
+}
+html{
+    scroll-behavior: smooth;
+}
+*{
+    box-sizing: border-box;
 }
