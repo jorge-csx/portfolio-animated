@@ -2,10 +2,15 @@
     {
         "id" : 1,
         "icon" : "bx bxl-github",
-        "url" : "#"
+        "url" : "https://github.com/jorgesoriax"
     },
     {
         "id" : 2,
+        "icon" : "bx bxl-dribbble",
+        "url" : "https://dribbble.com/jorgesoriax"
+    },
+    {
+        "id" : 3,
         "icon" : "bx bxs-adjust-alt",
         "url" : "#"
     }

@@ -1,0 +1,33 @@
+[
+    {
+        "id"    : 1,
+        "title" : "SeresTech catalog",
+        "cover" : "images/profile.jpg",
+        "langs"  : [
+            { 
+                "id"   : 1,
+                "title" : "React",
+                "icon" : "bx bxl-react"
+            },
+            { 
+                "id"   : 2,
+                "title" : "Tailwind",
+                "icon" : "bx bxl-tailwind-css"
+            }
+        ],
+        "links" : [
+            {
+                "id"   : 1,
+                "title" : "web",
+                "url"  : "#",
+                "icon" : "bx bx-link"
+            },
+            {
+                "id"   : 2,
+                "title" : "repository",
+                "url"  : "#",
+                "icon" : "bx bxl-github"
+            }
+        ]
+    }
+]
