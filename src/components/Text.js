@@ -28,7 +28,7 @@ export function Highlight(props) {
 }
 export function Description(props) {
     return (
-        <div className="flex items-center gap-2 text-gray-400 mb-2 text-base">
+        <div className="flex items-center gap-2 text-gray-400 mb-2 font-light font-body">
             {props.children}
         </div>
     )

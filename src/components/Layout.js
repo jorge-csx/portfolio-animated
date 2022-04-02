@@ -2,62 +2,60 @@ import sectionsJson from '../json/Sections';
 import linksJson from '../json/Links';
 
 export function Header(){
-    const getSections = () => {
-        return (
-            sectionsJson.map((section) => 
-                <a key={section.id} href={section.href} className="w-full">
-                    <div className='
-                        w-full h-8 flex items-center pl-3 text-slate-400 text-sm transition ease-in-out
-                        hover:text-slate-700
-                    '>
-                        {section.title}    
-                    </div>
-                </a>
-            )             
-        )
-    }
-    const getLinks = () => {
-        return (
-            linksJson.map((link) => 
-                <a key={link.id} href={link.url} className="flex items-end" target="_blank" rel="noopener noreferrer">
-                    <div className="flex">
-                        <i className={link.icon + ' text-2xl'}></i>
-                    </div>
-                </a>
-            ) 
-        )
-    }
     return (
-        <header className="fixed bottom-0 flex px-14 py-4 gap-12 w-full backdrop-blur border-t z-10 bg-white/90">
-            <div className="
-                flex w-full relative
-                before:content-[''] before:absolute before:border-b-2 before:bottom-0 before:w-full before:rounded-full
-                after:content-[''] after:absolute after:border-b-2 after:bottom-0 after:w-1/4 after:border-slate-700 after:rounded-full
-            ">
-                {getSections()}
-            </div>
-            <div className="flex gap-2">
-                {getLinks()}
-            </div>
+        <header className=" w-full fixed bottom-0 flex px-14 py-4 gap-12 backdrop-blur border-t z-10 bg-white/80">
+            <IndicatorsBar
+                items={ sectionsJson }
+            />
         </header>
     )
 }
-export function Section (props) {
+
+export function Section(props) {
     return (
-        <section id={props.id} className="w-full h-screen px-24 py-14 flex items-center justify-center gap-8">
+        <section id={props.id} className="w-full h-screen px-24 py-14 flex items-center justify-center gap-8 border-y border-red-400">
             {props.children}
         </section>
     )
 }
-export function ImageZoomIn (props) {
+
+export function ImageZoomIn(props) {
     return (
-        <div className="w-full h-full rounded-md overflow-hidden">
-            <img className="
-                h-full object-cover transition ease-in-out
-                hover:scale-110
-            " 
+        <div className="h-full rounded-md overflow-hidden">
+            <img className={'w-full h-full object-cover transition ease-in-out\
+                hover:scale-110 ' + props.className}
                 src={props.src}
+                onLoad={props.onLoad}
             />
+        </div>
+    )
+}
+
+export function IndicatorsBar(props) {
+    const indicators = () => {
+        return (
+            props.items.map((item, id) => 
+                <a 
+                    href={item.link}  
+                    key={id}
+                    className="w-full group"
+                >
+                    <div className="mb-1 text-gray-300 transition-all ease-in-out
+                        group-hover:text-slate-700
+                        ">
+                        {item.title}
+                    </div>
+                    <div className="w-full h-[0.125rem] bg-gray-200 rounded-full transition-all ease-in-out
+                        group-hover:bg-slate-700"
+                    >
+                    </div>
+                </a>
+            )
+        )
+    }
+    return (
+        <div className="w-full flex gap-4">
+            { indicators() }
         </div>
     )
 }

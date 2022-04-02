@@ -15,11 +15,13 @@ export default function Home(){
     }
     return (
         <Section id="home">
-            <div className="w-80 h-2/3">
-                <ImageZoomIn src="images/profile.jpg"/>
+            <div className="w-80 h-3/4">
+                <ImageZoomIn 
+                    src="images/profile.jpg"
+                />
             </div>
             
-            <div className="w-80 h-2/3 relative">
+            <div className="w-80 h-3/4 relative">
                 <Display>Front-end Web Jr</Display>
                 <p>Hola, bienvenidx,</p>
                 <p>soy <Highlight>Jorge Soria,</Highlight> tengo <Highlight>21 años.</Highlight></p>
@@ -48,7 +50,7 @@ export default function Home(){
                 </p>
                 <div className="absolute bottom-0">
                     <a href="#contact">
-                        <ButtonCyan title="Escribirme"/>
+                        <ButtonCyan>Escribirme</ButtonCyan>
                     </a>
                 </div>
             </div>
