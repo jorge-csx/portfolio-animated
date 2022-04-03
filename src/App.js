@@ -1,5 +1,5 @@
 import { Home, Experience, Projects, Contact} from "./views";
-import { Header } from "./components/Layout";
+import Navbar from "./components/Navbar";
 import {BrowserRouter as Router, Route, Routes} from 'react-router-dom';
 
 function App() {
@@ -12,7 +12,7 @@ function App() {
           <Route
             path="/" element={
               <>
-                <Header/>
+                <Navbar/>
                 <Home/>
                 <Experience/>
                 <Projects/>

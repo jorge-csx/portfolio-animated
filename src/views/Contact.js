@@ -22,7 +22,7 @@ export default function Contact(){
                         title="Correo electrónico"
                     />
                 </div>
-                <ButtonCyan>Hablemos</ButtonCyan>
+                <ButtonCyan>Enviar mensaje</ButtonCyan>
                 <div className="flex flex-row gap-4 mt-10">
                     <IconLabel
                         icon="bx bx-envelope"
@@ -38,6 +38,11 @@ export default function Contact(){
                         icon="bx bxl-dribbble"
                         title="/jorgesoriax"
                         link="https://dribbble.com/jorgesoriax"
+                    />
+                    <IconLabel
+                        icon="bx bxl-github"
+                        title="/jorgesoriax"
+                        link="https://github.com/jorgesoriax"
                     />
                 </div>
             </div>

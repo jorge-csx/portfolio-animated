@@ -23,7 +23,7 @@ export default function Home(){
             
             <div className="w-80 h-3/4 relative">
                 <Display>Front-end Web Jr</Display>
-                <p>Hola, bienvenidx,</p>
+                <p className="m-0">Hola, bienvenidx,</p>
                 <p>soy <Highlight>Jorge Soria,</Highlight> tengo <Highlight>21 años.</Highlight></p>
                 
                 <div className="my-4 grid grid-flow-col justify-start gap-4">
