@@ -44,3 +44,12 @@ export function ExpandableLabel(props) {
         </div>
     )
 }
+
+export function IconLabel(props) {
+    return (
+        <label className="border px-4 py-2 gap-4 rounded-full w-fit flex items-center text-sm">
+            <i className={props.icon + " text-xl"} />
+            <a href={props.link} className="underline decoration-1 underline-offset-4">{props.title}</a>
+        </label>
+    )
+}

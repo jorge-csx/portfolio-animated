@@ -66,12 +66,12 @@ export default function Carousel(props) {
         if (props.images.length > 1) {
             return (
                 <div className="flex gap-4 pb-2">
-                    <i class='bx bx-chevron-left text-2xl cursor-pointer text-gray-300
+                    <i className='bx bx-chevron-left text-2xl cursor-pointer text-gray-300
                             hover:text-slate-700 transition-all ease-in-out' onClick={previous}/>
                     <p className="m-0 w-14 text-center">
                         { selectedIndexPosition }
                     </p>
-                    <i class='bx bx-chevron-right text-2xl cursor-pointer text-gray-300
+                    <i className='bx bx-chevron-right text-2xl cursor-pointer text-gray-300
                             hover:text-slate-700 transition-all ease-in-out' onClick={next}/>
                 </div>
             )
