@@ -14,7 +14,7 @@ export default function AboutMe(){
             <div className="w-2/5 h-2/3">
                 <Title>Experiencia</Title>
                 <div className="flex justify-between">
-                    <Subtitle>Academica</Subtitle>
+                    <Subtitle>Académica</Subtitle>
                     <Description>
                         <i className="bx bx-time-five"></i>
                         De 2016 a 2019
@@ -23,7 +23,7 @@ export default function AboutMe(){
                 <p>Termine mi <Highlight>carrera técnica en programación web</Highlight> en la Escuela Industrial y Preparatoria Técnica Álvaro Obregón.</p>
                 <p>En donde adquirí <Highlight>conocimientos</Highlight> en:</p>
 
-                <div className="flex flex-row flex-wrap gap-2 py-2 mb-2">
+                <div className="flex flex-row flex-wrap gap-2 py-2 mb-6">
                     <Label>Programación web</Label>
                     <Label>Maquetación web</Label>
                     <Label>Bases de datos</Label>

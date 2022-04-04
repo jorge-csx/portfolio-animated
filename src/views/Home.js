@@ -4,23 +4,14 @@ import { Display, Highlight } from "../components/Text";
 import { Section, ImageZoomIn } from "../components/Layout";
 
 export default function Home(){
-    const copyToClipBoard = (e) =>{
-        const copyParent = e.target.parentElement,
-              copyInput = copyParent.querySelector('#copyInput');
-
-        copyInput.select();
-        copyInput.setSelectionRange(0, 99999);
-
-        navigator.clipboard.writeText(copyInput.value)
-    }
     return (
-        <Section id="home">
-            <div className="w-80 h-3/4">
+        <Section id="home" bg="images/bg/home.jpg" className="bg-cover bg-fixed bg-cyan-400">
+            <div className="w-80 h-3/4 border rounded-md">
                 <ImageZoomIn 
-                    src="images/profile.jpg"
+                    src="images/profile.png"
+                    className="backdrop-blur-sm hover:scale-100 bg-white/50"
                 />
             </div>
-            
             <div className="w-80 h-3/4 relative">
                 <Display>Front-end Web Jr</Display>
                 <p className="m-0">Hola, bienvenidx,</p>
@@ -36,7 +27,7 @@ export default function Home(){
                         title="jorge_soriaw@outlook.com"
                         link="mailto:jorge_soriaw@outlook.com"
                         iconF="bx bx-copy"
-                        onClick={copyToClipBoard}
+                        clipboard="y"
                     />
                 </div>
                 <p className="mb-2">
@@ -57,4 +48,3 @@ export default function Home(){
         </Section>
     )
 }
-/*bg-gradient-to-bl from-transparent via-cyan-50 to-transparent */

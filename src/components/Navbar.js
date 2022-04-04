@@ -2,7 +2,7 @@ import sectionsJson from '../json/Sections';
 import { useState } from 'react';
 export default function Navbar(){
     return (
-        <header className=" w-1/2 min-w-fit fixed bottom-0 left-1/2 -translate-x-1/2 flex px-7 pt-3 pb-0 gap-12 backdrop-blur border z-10 bg-white/75 mb-4 rounded-full">
+        <header className=" w-1/2 min-w-fit fixed bottom-0 left-1/2 -translate-x-1/2 flex px-7 pb-0 gap-12 backdrop-blur border z-10 bg-white/75 mb-4 rounded-full">
             <IndicatorsBar
                 items={ sectionsJson }
             />
@@ -23,24 +23,24 @@ function IndicatorsBar(props) {
     function toggleActiveStylesTitle(index) {
         if (appState.indicators[index] === appState.activeIndicator) {
             // Active
-            return "mb-2 font-medium text-slate-700 text-center content-center transition-all ease-in-out"
+            return "mt-3 mb-2 font-medium text-slate-700 text-center transition-all ease-in-out"
         } else {
             // Inactive
-            return "mb-2 font-medium text-slate-700 text-center transition-all ease-in-out group-hover:text-slate-700"
+            return "mt-3 mb-2 font-medium text-slate-700/70 text-center transition-all ease-in-out group-hover:text-slate-700"
         }
     }
     function toggleActiveStylesBar(index) {
         if (appState.indicators[index] === appState.activeIndicator) {
             // Active
-            return "w-full h-0.5 bg-slate-700 rounded-t-md mix-blend-multiply transition-all ease-in-out"
+            return "w-full h-0.5 bg-cyan-400 rounded-t-md mix-blend-multiply transition-all ease-in-out"
             // Inactive
         } else {
-            return "w-full h-0.5 bg-trasparent rounded-t-md transition-all ease-in-out group-hover:bg-slate-700"
+            return "w-full h-0.5 bg-trasparent rounded-t-md transition-all ease-in-out group-hover:bg-gray-300"
         }
     }
     
     return (
-        <div className="w-full flex gap-4 translate-y-px">
+        <div className="w-full flex gap-4 translate-y-px select-none">
             {
                 appState.indicators.map((indicator, index) => (
                 <a 
