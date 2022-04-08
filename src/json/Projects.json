@@ -1,31 +1,26 @@
 [
     {
-        "id"    : 1,
-        "title" : "SeresTech catalog",
+        "title" : "SeresTech catálogo y panel",
+        "alt"   : "serestech-catalogo-panel",
         "cover" : "images/carousel/1.jpg",
         "langs" : [
             { 
-                "id"   : 1,
-                "title" : "React",
-                "icon" : "bx bxl-react",
-                "color" : "#61DAFB"
+                "title" : "Html",
+                "icon" : "bx bxl-html5",
+                "color" : "#E96228"
             },
             { 
-                "id"   : 2,
-                "title" : "Tailwind",
-                "icon" : "bx bxl-tailwind-css",
-                "color" : "#38BDF8"
+                "title" : "Sass",
+                "icon" : "bx bxl-sass",
+                "color" : "#C96195"
             }
             ,
             { 
-                "id"   : 3,
                 "title" : "Laravel",
                 "icon" : "bx bxs-quote-single-right",
                 "color" : "#F9322C"
-            }
-            ,
+            },
             { 
-                "id"   : 4,
                 "title" : "Jquery",
                 "icon" : "bx bxl-jquery",
                 "color" : "#78CFF5"
@@ -33,80 +28,52 @@
         ],
         "links" : [
             {
-                "id"   : 1,
-                "title" : "web",
-                "url"  : "#",
+                "title" : "serestech.com.mx",
+                "url"  : "https://serestech.com.mx",
                 "icon" : "bx bx-link"
             },
             {
-                "id"   : 2,
-                "title" : "repository",
+                "title" : "Repositorio",
                 "url"  : "#",
                 "icon" : "bx bxl-github"
             }
         ]
     },
     {
-        "id"    : 2,
-        "title" : "Project 2",
-        "cover" : "images/carousel/2.jpg",
+        "title" : "SeresTech catálogo y panel 2",
+        "alt"   : "here",
+        "cover" : "images/carousel/1.jpg",
         "langs" : [
             { 
-                "id"   : 1,
-                "title" : "React",
-                "icon" : "bx bxl-react",
-                "color" : "#61DAFB"
+                "title" : "Html",
+                "icon" : "bx bxl-html5",
+                "color" : "#E96228"
             },
             { 
-                "id"   : 2,
-                "title" : "Tailwind",
-                "icon" : "bx bxl-tailwind-css",
-                "color" : "#38BDF8"
+                "title" : "Sass",
+                "icon" : "bx bxl-sass",
+                "color" : "#C96195"
+            }
+            ,
+            { 
+                "title" : "Laravel",
+                "icon" : "bx bxs-quote-single-right",
+                "color" : "#F9322C"
+            },
+            { 
+                "title" : "Jquery",
+                "icon" : "bx bxl-jquery",
+                "color" : "#78CFF5"
             }
         ],
         "links" : [
             {
-                "id"   : 1,
-                "title" : "web",
-                "url"  : "#",
+                "title" : "serestech.com.mx",
+                "url"  : "https://serestech.com.mx",
                 "icon" : "bx bx-link"
             },
             {
-                "id"   : 2,
-                "title" : "repository",
-                "url"  : "#",
-                "icon" : "bx bxl-github"
-            }
-        ]
-    },
-    {
-        "id"    : 3,
-        "title" : "Project 3",
-        "cover" : "images/carousel/3.jpg",
-        "langs" : [
-            { 
-                "id"   : 1,
-                "title" : "React",
-                "icon" : "bx bxl-react",
-                "color" : "#61DAFB"
-            },
-            { 
-                "id"   : 2,
-                "title" : "Tailwind",
-                "icon" : "bx bxl-tailwind-css",
-                "color" : "#38BDF8"
-            }
-        ],
-        "links" : [
-            {
-                "id"   : 1,
-                "title" : "web",
-                "url"  : "#",
-                "icon" : "bx bx-link"
-            },
-            {
-                "id"   : 2,
-                "title" : "repository",
+                "title" : "Repositorio",
                 "url"  : "#",
                 "icon" : "bx bxl-github"
             }

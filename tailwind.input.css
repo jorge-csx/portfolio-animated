@@ -2,26 +2,9 @@
 @tailwind components;
 @tailwind utilities;
 
-@layer utilities{
-    .code-highlight{
-        border-radius: 0.25rem;
-        padding: 0.125rem 0.1875rem;
-        margin: 0 -0.1875rem;
-    }
-    .bg-code-highlight{
-        background-color: rgb(103 232 249 / .15); /* #CFFAFE | cyan-100 */
-        color: rgb(34 211 238 / 1);             /* #22D3EE | cyan-400 */
-    }
-}
-html{
-    scroll-behavior: smooth;
-}
 *{
     box-sizing: border-box;
 }
 p{
     margin-bottom: 0.5rem;
 }
-/* img.loaded{
-    opacity: 1;
-} */

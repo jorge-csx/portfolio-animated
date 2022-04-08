@@ -1,14 +1,23 @@
-import { Section, ImageZoomIn } from "../components/Layout";
+import { Section, Icon } from "../components/Layout";
 import { Label } from "../components/Labels";
 import { Title, Subtitle, Highlight, Description } from "../components/Text"
 
 export default function AboutMe(){
     return (
-        <Section id="experience">
+        <Section 
+            id="experience"
+            className="
+                bg-gray-50/50
+                dark:bg-gray-900/30"
+        >
             <div className="w-1/3 h-2/3 flex flex-col justify-between">
                 <Title>Competencias</Title>
-                <img src="images/experience.png" className=" w-96"/>
-                <p>Soy autodidacta, cuento con conocimientos en <Highlight>Html, Css, JavaScript, Sass, Tailwind, Figma</Highlight>...</p>
+                <img 
+                    src="images/experience.png"
+                    className=" w-96"
+                    alt="ilustración-experiencia"
+                />
+                <p>Soy autodidacta, cuento con conocimientos en <Highlight>Html, Css, JavaScript, Sass, Tailwind, Figma...</Highlight></p>
             </div>
 
             <div className="w-2/5 h-2/3">
@@ -16,8 +25,12 @@ export default function AboutMe(){
                 <div className="flex justify-between">
                     <Subtitle>Académica</Subtitle>
                     <Description>
-                        <i className="bx bx-time-five"></i>
-                        De 2016 a 2019
+                        Cursado desde 2016 a 2019
+                        <Icon
+                            icon="bx bx-time-five"
+                            size="text-xl"
+                            className="text-slate-400"
+                        />
                     </Description>
                 </div>
                 <p>Termine mi <Highlight>carrera técnica en programación web</Highlight> en la Escuela Industrial y Preparatoria Técnica Álvaro Obregón.</p>
