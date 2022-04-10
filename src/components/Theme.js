@@ -69,13 +69,18 @@ export default function Theme(){
     function toggleViewThemes() {
         const options = document.querySelector("#options")
 
-        if (options.classList.contains("hidden")) {
-            options.classList.add("flex")
-            options.classList.remove("hidden")
-        } else {
+        function hide() {
             options.classList.add("hidden")
             options.classList.remove("flex")
         }
+
+        function show() {
+            options.classList.add("flex")
+            options.classList.remove("hidden")
+        }
+
+        options.classList.contains("hidden") ? show() : hide()
+        options.addEventListener("mouseleave", () => { hide() })
     }
 
     // Establecer icono según tema actual
@@ -90,11 +95,11 @@ export default function Theme(){
     }
 
     return (
-        <div className="relative flex items-center justify-center">
+        <div className="relative flex items-center justify-center group">
             <ul 
                 id="options"
                 className="
-                    border absolute bottom-full mb-5 hidden flex-row gap-3 p-2 rounded-full bg-white
+                    border absolute bottom-full mb-2 hidden flex-row gap-3 p-2 rounded-full bg-white
                     dark:border-slate-600 dark:bg-slate-800
                 "
             >

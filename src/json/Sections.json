@@ -1,21 +1,17 @@
 [
     {
-        "id" : 1,
         "title" : "Inicio",
         "link" : "#home"
     },
     {
-        "id" : 2,
         "title" : "Experiencia",
         "link" : "#experience"
     },
     {
-        "id" : 3,
         "title" : "Proyectos",
         "link" : "#projects"
     },
     {
-        "id" : 4,
         "title" : "Contacto",
         "link" : "#contact"
     }

@@ -12,10 +12,11 @@ export function Section(props) {
     return (
         <section
             id={ props.id }
-            className={ "snap-start w-full h-screen px-24 py-14 flex items-center justify-center gap-8 transition-all ease-in-out " + props.className }
             style={ props.bg ? bgImage : {} }
         >
-            { props.children }
+            <div className={ "w-full h-screen px-24 py-14 flex items-center justify-center gap-8 " + props.className }>
+                { props.children }
+            </div>
         </section>
     )
 }
