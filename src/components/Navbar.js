@@ -5,7 +5,6 @@ import Theme from './Theme';
 export default function Navbar(){
     function Indicators() {
         const indicators = []
-
         indicators.push(
             sectionsJson.map((indicator, index) => (
                 <li key={index} className="w-24 translate-y-px">
@@ -16,8 +15,9 @@ export default function Navbar(){
                         <div
                             id="indicator-title"
                             className="
-                                mt-3 mb-3 text-center transition-all ease-in-out
-                                text-slate-500 group-hover:text-slate-700 dark:group-hover:text-white dark:font-normal
+                                mt-3 mb-3 text-center transition-all ease-in-out text-slate-500
+                                group-hover:text-slate-700 
+                                dark:group-hover:text-white dark:font-normal
                             "
                         >
                             {indicator.title}
@@ -30,21 +30,25 @@ export default function Navbar(){
                 </li>
             ))
         )
-        return indicators
+
+        return (
+            <ul className="w-full flex items-center gap-4 justify-between">
+                { indicators }
+            </ul>
+        )
     }
     
     return (
         <nav 
             className="
-                hidden min-w-fit fixed bottom-4 left-1/2 -translate-x-1/2 px-7 pb-0 border z-10 gap-4 backdrop-blur bg-white/80 rounded-full
+                hidden min-w-fit fixed bottom-4 left-1/2 -translate-x-1/2 px-7 pb-0  z-10 gap-4 backdrop-blur rounded-full
+                border bg-white/80
                 dark:border-slate-600 dark:bg-slate-800/90 dark:text-white      
 
                 md:flex
             "
         >
-            <ul className="w-full flex items-center gap-4 justify-between">
-                <Indicators/>
-            </ul>
+            <Indicators/>
             <Theme/>
             <Icon
                 icon="bx bxl-github"

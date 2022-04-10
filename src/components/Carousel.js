@@ -7,11 +7,9 @@ export default function Carousel(props) {
     const [selectedIndex, setSelectedIndex] = useState(0)
     const [selectedImage, setSelectedImage] = useState(props.images[0])
     const [selectedJson, setSelectedJson]   = useState(props.json[0])
-    const [loaded, setLoaded]               = useState(false)
     const selectedIndexPosition = (selectedIndex + 1) + " de " + props.images.length
    
     const selectNewImage = (index, images, json, next = true) => {
-        setLoaded(false)
         setTimeout(() => {
             // Si next es true se almacena la primera condición, sino la siguiente...
             const condition = next
@@ -36,7 +34,7 @@ export default function Carousel(props) {
         selectNewImage(selectedIndex, props.images, props.json)
     }
 
-    const ActionsBar = () => {
+    const actionsBar = () => {
         const icons = () => {
             return (
                 selectedJson.langs.map((lang, index) => (
@@ -136,16 +134,13 @@ export default function Carousel(props) {
         )
     }
 
-    const Cover = () => {
+    const cover = () => {
         return (
             <div className="w-full h-full overflow-hidden cursor-pointer">
                 <ImageZoomIn 
-                    id="example"
                     src={ selectedImage }
-                    className={ loaded ? "loaded active:" : ""  }
                     alt={ "portada-" + selectedJson.alt }
-                    onLoad={ () => setLoaded(true) }
-                    onClick={ props.coverOnClick }
+                    // onClick={ props.coverOnClick }
                 />
             </div>
         )
@@ -156,9 +151,8 @@ export default function Carousel(props) {
             <Display>
                 {selectedJson.title}
             </Display>
-            <ActionsBar/>
-            <Cover/>
+            { actionsBar() }
+            { cover() }
         </div>
     )
 }
-// className={ loaded ? "loaded active:" : ""  }
