@@ -5,3 +5,4 @@ Experimental portfolio to share my recent works.
 * React
 * Tailwind
 * Boxicons
+* Font Awesome icons

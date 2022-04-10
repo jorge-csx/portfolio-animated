@@ -1,7 +1,7 @@
 import { Section } from "../components/Layout";
 import Carousel from "../components/Carousel";
 import projectsJson from "../json/Projects.json";
-import expandProject from "../scripts/expandProject";
+import viewProject from "../scripts/viewProject";
 
 
 export default function Projects(){
@@ -19,7 +19,7 @@ export default function Projects(){
             <Carousel 
                 images={ images } 
                 json={ projectsJson }
-                coverOnClick={ () => expandProject() }
+                coverOnClick={ () => viewProject() }
             />
         </Section>
     )

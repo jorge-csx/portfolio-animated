@@ -1,23 +1,18 @@
 [
     {
-        "title" : "SeresTech catálogo y panel",
+        "title" : "SeresTech Catálogo con panel",
         "alt"   : "serestech-catalogo-panel",
         "cover" : "images/carousel/1.jpg",
         "langs" : [
             { 
-                "title" : "Html",
-                "icon" : "bx bxl-html5",
-                "color" : "#E96228"
-            },
-            { 
                 "title" : "Sass",
-                "icon" : "bx bxl-sass",
-                "color" : "#C96195"
+                "icon" : "fa-brands fa-sass",
+                "color" : "#CF649A"
             }
             ,
             { 
                 "title" : "Laravel",
-                "icon" : "bx bxs-quote-single-right",
+                "icon" : "fa-brands fa-laravel",
                 "color" : "#F9322C"
             },
             { 
