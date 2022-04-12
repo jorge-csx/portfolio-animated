@@ -1,4 +1,4 @@
-import { ButtonCyan } from "../components/Buttons";
+import Button from "../components/Buttons";
 import { ExpandableLabel } from "../components/Labels";
 import { Display, Highlight } from "../components/Text";
 import { Section } from "../components/Layout";
@@ -50,9 +50,11 @@ export default function Home(){
                 <p>He fusionado tales gustos para especializarme en el desarollo <Highlight>Frontend.</Highlight></p>
                 <p>Creo en el <Highlight>trabajo en equipo</Highlight> como medio para el <Highlight>desarollo de grandes ideas.</Highlight></p>
                 <div className="absolute bottom-0">
-                    <ButtonCyan>
+                    <Button
+                        style="cta"
+                    >
                         Escribirme
-                    </ButtonCyan>
+                    </Button>
                 </div>
             </div>
         </Section>

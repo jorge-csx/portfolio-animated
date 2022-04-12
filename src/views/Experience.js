@@ -17,7 +17,7 @@ export default function AboutMe(){
                     className=" w-96"
                     alt="ilustración-experiencia"
                 />
-                <p>Soy autodidacta, cuento con conocimientos en <Highlight>Html, Css, JavaScript, Sass, Tailwind, Figma...</Highlight></p>
+                <p>Soy aspirante a Ingeniería en Software y autodidacta, cuento con conocimientos en <Highlight>Html, Css, JavaScript, Sass, Tailwind, Figma...</Highlight></p>
             </div>
 
             <div className="w-2/5 h-2/3">

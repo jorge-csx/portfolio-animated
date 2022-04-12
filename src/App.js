@@ -55,17 +55,17 @@ function App() {
         text-slate-700
         dark:text-slate-400 dark:bg-slate-800
 
-        after:content-['min'] after:absolute after:bg-red-500 after:top-10 after:text-white after:left-1/2 after:-translate-1/2-full
         sm:after:content-['small'] md:after:content-['medium'] lg:after:content-['large'] xl:after:content-['xlarge'] 2xl:after:content-['2xlarge']
       "
+      // after:content-['min'] after:absolute after:bg-red-500 after:top-10 after:text-white after:left-1/2 after:-translate-1/2-full
     >
     <Router>
       <Navbar/>
       <Routes>
         <Route path="/" element={
             <>
-              <Home/>
-              <Experience/>
+              {/* <Home/>
+              <Experience/> */}
               <Projects/>
               <Contact/>
             </>
@@ -84,7 +84,7 @@ export default App;
   - funcion para enviar form
   - responsive
   x darkmode
-  - open project
+  x open project
   x navegabilidad
   x función para navbar con scroll
 */}

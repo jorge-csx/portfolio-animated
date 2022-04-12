@@ -7,7 +7,7 @@
  */
 export function Section(props) {
     const bgImage = {
-        backgroundImage: 'url(' + props.bg + ')',
+        backgroundImage: 'url(' + props.bg + ')'
     }
     return (
         <section
@@ -28,26 +28,61 @@ export function Section(props) {
  * onLoad  -> Función onLoad
  */
 export function ImageZoomIn(props) {
-    return (
-        <div 
-            id={props.id} 
-            className="h-full rounded-md overflow-hidden"
-        >
+    function basic() {
+        return (
             <img className={ "w-full h-full object-cover transition-all ease-in-out hover:scale-110 " + props.className }
                 src={ props.src }
                 onLoad={ props.onLoad }
                 onClick={ props.onClick }
                 alt={ props.alt }
             />
-        </div>
-    )
+        )
+    }
+    if (props.link) {
+        if (props.blank == "none") {
+            return (
+                <div 
+                    id={props.id} 
+                    className="h-full rounded-md overflow-hidden transition-all ease-in-out"
+                >
+                    <a href={ props.link } >
+                        { basic() }
+                    </a>
+                </div>
+            )
+        } else {
+            return (
+                <div 
+                    id={props.id} 
+                    className="h-full rounded-md overflow-hidden transition-all ease-in-out"
+                >
+                    <a 
+                        href={props.link} 
+                        target="_blank"
+                        rel="noopener noreferrer"
+                    >
+                        { basic() }
+                    </a>
+                </div>
+            )
+        }
+    } else {
+        return (
+            <div 
+                id={props.id} 
+                className="h-full rounded-md overflow-hidden"
+            >
+                { basic() }
+            </div>            
+        )
+    }
 }
 /**
  * * Input props
- * title -> Encabezado de input
+ * title       -> Encabezado de input
  * placeholder -> Placeholder en input
- * type -> Tipo de input a devolver
- * className -> Clases adicionales para contenedor
+ * type        -> Tipo de input a devolver
+ * className   -> Clases adicionales para contenedor
  */
 export function Input(props) {
     function textarea() {

@@ -1,4 +1,4 @@
-import { ButtonCyan } from "../components/Buttons";
+import Button from "../components/Buttons";
 import { Section, Input } from "../components/Layout";
 import { ExpandableLabel } from "../components/Labels"
 import { Display } from "../components/Text"
@@ -32,7 +32,12 @@ export default function Contact(){
                         type="textarea"
                     />
                 </div>
-                <ButtonCyan>Enviar mensaje</ButtonCyan>
+                <Button
+                    type="submit"
+                    style="cta"
+                >
+                    Enviar mensaje
+                </Button>
             </div>
             <div className="max-w-[2.375rem] grid grid-flow-row gap-4">
                 <ExpandableLabel

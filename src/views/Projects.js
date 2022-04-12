@@ -1,8 +1,6 @@
 import { Section } from "../components/Layout";
 import Carousel from "../components/Carousel";
 import projectsJson from "../json/Projects.json";
-import viewProject from "../scripts/viewProject";
-
 
 export default function Projects(){
     const images = []
@@ -11,7 +9,7 @@ export default function Projects(){
     return (
         <Section 
             id="projects"
-            className="
+            className="overflow-hidden transition-all duration-300 ease-in-out
                 bg-gray-50/50
                 dark:bg-gray-900/30
             "
@@ -19,7 +17,6 @@ export default function Projects(){
             <Carousel 
                 images={ images } 
                 json={ projectsJson }
-                coverOnClick={ () => viewProject() }
             />
         </Section>
     )

@@ -3,7 +3,7 @@ import { Icon } from './Layout';
 import Theme from './Theme';
 
 export default function Navbar(){
-    function Indicators() {
+    function indicators() {
         const indicators = []
         indicators.push(
             sectionsJson.map((indicator, index) => (
@@ -41,14 +41,14 @@ export default function Navbar(){
     return (
         <nav 
             className="
-                hidden min-w-fit fixed bottom-4 left-1/2 -translate-x-1/2 px-7 pb-0  z-10 gap-4 backdrop-blur rounded-full
+                hidden min-w-fit fixed bottom-4 left-1/2 -translate-x-1/2 px-7 pb-0  z-10 gap-4 backdrop-blur rounded-full transition-all ease-in-out
                 border bg-white/80
                 dark:border-slate-600 dark:bg-slate-800/90 dark:text-white      
 
                 md:flex
             "
         >
-            <Indicators/>
+            { indicators() }
             <Theme/>
             <Icon
                 icon="bx bxl-github"
