@@ -1,8 +1,10 @@
 import { Display, Description } from "./Text"
-import { ImageZoomIn, Icon, PopUp } from "./Layout"
-import { useState } from "react"
-import Button from "./Buttons"
-import ProjectsDoc from "../components/ProjectsDoc";
+import { ImageZoomIn, Icon, PopUp, Frame } from "./Layout"
+import React, { Component, useState } from "react"
+import Button from "./Button"
+import ProjectSerestech from "../pages/ProjectSerestech";
+import ProjectAlternative from "../pages/ProjectAlternative";
+import toggleClasses from "../scripts/toggleClasses"
 
 export default function Carousel(props) {
     const [selectedIndex, setSelectedIndex] = useState(0)
@@ -10,6 +12,14 @@ export default function Carousel(props) {
     const [selectedJson, setSelectedJson]   = useState(props.json[0])
     const selectedIndexPosition = (selectedIndex + 1) + " de " + props.images.length
     const [projectState, setProjectState] = useState(0)
+
+    const pagesComponents = {
+        serestech: ProjectSerestech,
+        alternative: ProjectAlternative
+    }
+    const [pageComponent, setPageComponent] = useState(
+        React.createElement(pagesComponents[props.json[0].page])
+    )
 
     const selectNewImage = (index, images, json, next = true) => {
         setTimeout(() => {
@@ -25,6 +35,7 @@ export default function Carousel(props) {
             setSelectedImage(images[nextIndex])
             setSelectedIndex(nextIndex)
             setSelectedJson(json[nextIndex])
+            setPageComponent(React.createElement(pagesComponents[json[nextIndex].page]))
         }, 100);
     }
 
@@ -45,27 +56,20 @@ export default function Carousel(props) {
         const languages = () => {
             return (
                 <div className="flex gap-2 pl-4 border-l-2 border-cyan-400">
-                    <Description
-                        margin="m-0"
-                    >
+                    <Description margin="m-0">
                         Creado con
                     </Description>
                     {  
                         selectedJson.langs.map((lang, index) => (
-                            <div 
-                                key={ index }
-                                className="rounded-md p-1 border bg-gray-200/25 dark:bg-slate-700/25 dark:border-slate-600"
-                            >
-                                <PopUp
-                                    message={ lang.title }
-                                >
+                            <Frame key={ index }>
+                                <PopUp message={ lang.title }>
                                     <Icon
                                         icon={ lang.icon }
                                         size="text-2xl"
                                         style={{ color : lang.color }}
                                     />
                                 </PopUp>
-                            </div>
+                            </Frame>
                         ))
                     }
                 </div>
@@ -75,36 +79,29 @@ export default function Carousel(props) {
         const links = () => {
             return (
                 <div className="flex gap-2">
-                    <Description
-                        margin="m-0"
-                    >
+                    <Description margin="m-0">
                         Visitar web y repositorio
                     </Description>
-                    { 
+                    {
                         selectedJson.links.map((link, index) => (
-                            <div
-                                key={ index } 
-                                className="rounded-md p-1 border bg-gray-200/25 dark:bg-slate-700/25 dark:border-slate-600"
-                            >
-                                <PopUp
-                                    message={ link.title }
-                                >
+                            <Frame key={index}>
+                                <PopUp message={link.title}>
                                     <Icon
-                                        key={ index }
-                                        icon={ link.icon }
+                                        key={index}
+                                        icon={link.icon}
                                         size="text-2xl"
                                         className="cursor-pointer"
-                                        link={ link.url }
+                                        link={link.url}
                                     />
                                 </PopUp>
-                            </div>
+                            </Frame>
                         ))
                     }
                 </div>
             )
         }
         // Botones para avanzar y retroceder el carrusel
-        const buttons = () => {
+        const buttonsIndex = () => {
             // Si la longitud del array images es mayor a 1 se imprimen los botones de navegación
             if (props.images.length > 1) {
                 return (
@@ -146,15 +143,15 @@ export default function Carousel(props) {
                 className="flex flex-row items-center justify-between mb-3"
             >
                 <div className="w-full flex flex-row gap-4 items-center">
-                    { languages() }
-                    { links() }
+                    {languages()}
+                    {links()}
                 </div>
-                { buttons() }
+                {buttonsIndex()}
                 <Button
                     id="button-view"
                     text="b-to-w"
                     className="hidden"
-                    onClick={ () => viewProject() }
+                    onClick={() => viewProject()}
                 >
                     Cerrar
                 </Button>
@@ -169,14 +166,16 @@ export default function Carousel(props) {
     const cover = () => {
         const id = "project-" + selectedJson.alt
         // Mensaje CTA para hacer clic sobre la imagen y ver contenido de proyecto
-        const message = () => {
+        const caption = () => {
             return (
-                <p className="
-                    absolute bottom-0 left-1/2 -translate-x-1/2 text-white pointer-events-none transition-all ease-in-out
-                    -mb-4 opacity-0
-                    group-hover:mb-4 group-hover:opacity-100
-                ">
-                    Presione para saber más sobre el desarrollo de este proyecto
+                <p 
+                    className="
+                        bg-slate-800/80 rounded-md px-5 py-2 absolute bottom-0 left-1/2 -translate-x-1/2 text-white pointer-events-none transition-all ease-in-out
+                        -mb-4 opacity-0
+                        group-hover:mb-4 group-hover:opacity-100
+                    "
+                >
+                    Clic para saber más
                 </p>
             )
         }
@@ -187,19 +186,16 @@ export default function Carousel(props) {
                 className="w-full h-full overflow-hidden relative group"
             >
                 <ImageZoomIn
-                    id={ id }
-                    src={ selectedImage }
+                    id={id}
+                    src={selectedImage}
                     link="#projects"
                     blank="none"
                     className="cursor-pointer"
-                    alt={ "portada-" + selectedJson.alt }
-                    onClick={ () => viewProject() }
+                    alt={"portada-" + selectedJson.alt}
+                    onClick={() => viewProject()}
                 />
-                { message() }
-                
-                <ProjectsDoc>
-                    Hola este es un ejemplo
-                </ProjectsDoc>
+                {caption()}
+                {pageComponent}
             </div>
         )
     }
@@ -208,18 +204,6 @@ export default function Carousel(props) {
      * Función para ejecutar animaciones de transición al hacer clic sobre la imagen contenida en cover
      */
     function viewProject() {
-        const toggleView = (element, classAdd, classRemove) => {
-            if (classAdd) {
-                for (let i = 0; i < classAdd.length; i++) {
-                    element.classList.add(classAdd[i])
-                }
-            }
-            if (classRemove) {
-                for (let i = 0; i < classRemove.length; i++) {
-                    element.classList.remove(classRemove[i])
-                }
-            }
-        }
 
         const section = document.querySelector("#projects"),
               carousel = section.querySelector("div"),
@@ -229,54 +213,52 @@ export default function Carousel(props) {
               cover = carousel.querySelector("#cover"),
               imageContainer = cover.firstChild,
               message = cover.querySelector("p"),
-              navbar = document.querySelector("nav"),
-              buttonView = actionsBar.querySelector("#button-view")
-
-              console.log(buttonView);
+              buttonView = actionsBar.querySelector("#button-view"),
+              projectDoc = cover.querySelector("#doc-project"),
+              navbar = document.querySelector("nav")
 
         if (projectState == 0) {
-            toggleView(section, "", ["px-24", "py-14"])
-            toggleView(title, ["p-6", "pb-0"])
-            toggleView(actionsBar, ["p-6", "pb-5", "pt-0", "border-b", "dark:border-slate-600"], ["mb-3"])
-            // toggleView(actionsBarButtons, ["opacity-0", "pointer-events-none"], ["opacity-100"])
-            toggleView(actionsBarButtons, ["hidden"], ["flex"])
-            toggleView(imageContainer, ["pointer-events-none", "h-1/2"], ["h-full", "rounded-md", "cursor-pointer"])
-            toggleView(message, ["hidden"])
-            // toggleView(buttonView, ["opacity-100"], ["opacity-0", "pointer-events-none"])
-            toggleView(buttonView, ["block"], ["hidden"])
-            toggleView(navbar, ["-bottom-14"], ["bottom-4"])
-            toggleView(cover, ["overflow-y-auto"], ["overflow-hidden"])
+            toggleClasses(section, "", ["px-24", "py-14"])
+            toggleClasses(title, ["p-6", "pb-0"])
+            toggleClasses(actionsBar, ["p-6", "pb-5", "pt-0", "border-b", "dark:border-slate-600"], ["mb-3"])
+            toggleClasses(actionsBarButtons, ["hidden"], ["flex"])
+            toggleClasses(imageContainer, ["pointer-events-none", "h-2/3", "border-b", "dark:border-b-slate-600"], ["h-full", "rounded-md", "cursor-pointer"])
+            toggleClasses(message, ["hidden"])
+            toggleClasses(buttonView, "", ["hidden"])
+            toggleClasses(navbar, ["-bottom-14"], ["bottom-4"])
+            toggleClasses(cover, ["overflow-y-auto"], ["overflow-hidden"])
+            toggleClasses(projectDoc, "", ["hidden"])
 
-            toggleView(document.querySelector("#root div"), ["overflow-hidden"], ["overflow-y-auto"])
+            toggleClasses(document.querySelector("#root div"), ["overflow-hidden"], ["overflow-y-auto"])
+            toggleClasses(document.querySelector("#contact"), ["hidden"])
 
             setProjectState(1)
         } else {
-            toggleView(section, ["px-24", "py-14"])
-            toggleView(title, "", ["p-6", "pb-0"])
-            toggleView(actionsBar, ["mb-3"], ["p-6", "pb-5", "pt-0", "border-b", "dark:border-slate-600"])
-            // toggleView(actionsBarButtons, ["opacity-100"], ["opacity-0", "pointer-events-none"])
-            toggleView(actionsBarButtons, ["flex"], ["hidden"])
-            toggleView(imageContainer, ["h-full", "rounded-md", "cursor-pointer"], ["pointer-events-none", "h-1/2"])
-            toggleView(message, "", ["hidden"])
-            // toggleView(buttonView, ["opacity-0", "pointer-events-none"], ["opacity-100"])
-            toggleView(buttonView, ["hidden"], ["block"])
-            toggleView(navbar, ["bottom-4"], ["-bottom-14"])
-            toggleView(cover, ["overflow-hidden"], ["overflow-y-auto"])
+            toggleClasses(section, ["px-24", "py-14"])
+            toggleClasses(title, "", ["p-6", "pb-0"])
+            toggleClasses(actionsBar, ["mb-3"], ["p-6", "pb-5", "pt-0", "border-b", "dark:border-slate-600"])
+            toggleClasses(actionsBarButtons, ["flex"], ["hidden"])
+            toggleClasses(imageContainer, ["h-full", "rounded-md", "cursor-pointer"], ["pointer-events-none", "h-2/3", "border-b", "dark:border-b-slate-600"])
+            toggleClasses(message, "", ["hidden"])
+            toggleClasses(buttonView, ["hidden"])
+            toggleClasses(navbar, ["bottom-4"], ["-bottom-14"])
+            toggleClasses(cover, ["overflow-hidden"], ["overflow-y-auto"])
+            toggleClasses(projectDoc, ["hidden"])
 
-            toggleView(document.querySelector("#root div"), ["overflow-y-auto"], ["overflow-hidden"])
+            toggleClasses(document.querySelector("#root div"), ["overflow-y-auto"], ["overflow-hidden"])
+            toggleClasses(document.querySelector("#contact"), "", ["hidden"])
 
             setProjectState(0)
         }
     }
 
     return (
-        <div className="flex flex-col h-full w-full">
-            <Display
-            >
+        <div className="flex flex-col h-full w-full relative">
+            <Display>
                 {selectedJson.title}
             </Display>
-            { actionsBar() }
-            { cover() }
+            {actionsBar()}
+            {cover()}
         </div>
     )
 }

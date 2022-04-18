@@ -1,8 +1,10 @@
 import { Home, Experience, Projects, Contact} from "./views";
 import Navbar from "./components/Navbar";
+import ProjectSerestech from "./pages/ProjectSerestech";
 import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
 import useObserver from "./customHooks/useObserver";
 import { useEffect } from "react";
+import toggleClasses from "./scripts/toggleClasses"
 
 function App() {
   const [observer, setElements, entries] = useObserver({
@@ -17,7 +19,7 @@ function App() {
 
   // Efecto que se ejecuta cada una entry es intersectada
   useEffect(() => {
-    const indicators = document.querySelectorAll('nav ul li a')
+    const indicators = document.querySelectorAll('#navbar ul li a')
 
     entries.forEach(entry => {
       if (entry.isIntersecting) {
@@ -30,18 +32,12 @@ function App() {
 
           if (href === id) {
             // Active
-            title.classList.add('text-slate-700', 'font-medium', 'dark:text-white')
-            title.classList.remove('text-slate-500')
-            
-            bar.classList.add('bg-cyan-400')
-            bar.classList.remove('bg-trasparent', 'group-hover:bg-slate-300', 'dark:group-hover:bg-slate-400')
+            toggleClasses(title, ["text-slate-700", "font-medium", "dark:text-white"], ["text-slate-500"])
+            toggleClasses(bar, ["bg-cyan-400"], ["bg-trasparent", "group-hover:bg-slate-300", "dark:group-hover:bg-slate-400"])
           } else {
             // Inactive
-            title.classList.remove('text-slate-700', 'font-medium', 'dark:text-white')
-            title.classList.add('text-slate-500')
-
-            bar.classList.remove('bg-cyan-400')
-            bar.classList.add('bg-trasparent', 'group-hover:bg-slate-300', 'dark:group-hover:bg-slate-400')
+            toggleClasses(title, ["text-slate-500"], ["text-slate-700", "font-medium", "dark:text-white"])
+            toggleClasses(bar, ["bg-trasparent", "group-hover:bg-slate-300", "dark:group-hover:bg-slate-400"], ["bg-cyan-400"])
           }
         })
       }
@@ -54,9 +50,8 @@ function App() {
         w-screen h-screen overflow-y-auto font-body text-base scroll-smooth
         text-slate-700
         dark:text-slate-400 dark:bg-slate-800
-
-        sm:after:content-['small'] md:after:content-['medium'] lg:after:content-['large'] xl:after:content-['xlarge'] 2xl:after:content-['2xlarge']
-      "
+        "
+      // sm:after:content-['small'] md:after:content-['medium'] lg:after:content-['large'] xl:after:content-['xlarge'] 2xl:after:content-['2xlarge']
       // after:content-['min'] after:absolute after:bg-red-500 after:top-10 after:text-white after:left-1/2 after:-translate-1/2-full
     >
     <Router>
@@ -71,6 +66,9 @@ function App() {
             </>
           }
         />
+        <Route path="test" element={
+          <ProjectSerestech/>
+        }/>
       </Routes>
     </Router>
     </div>
@@ -78,13 +76,3 @@ function App() {
 }
 
 export default App;
-
-{/*
-  Faltan
-  - funcion para enviar form
-  - responsive
-  x darkmode
-  x open project
-  x navegabilidad
-  x función para navbar con scroll
-*/}

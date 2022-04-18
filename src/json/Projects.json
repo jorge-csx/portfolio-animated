@@ -1,8 +1,8 @@
 [
     {
-        "title" : "SeresTech Catálogo con panel",
+        "title" : "Catálogo SeresTech - Fullstack",
         "alt"   : "serestech-catalogo-panel",
-        "cover" : "images/carousel/1.jpg",
+        "cover" : "images/carousel/serestech.webp",
         "langs" : [
             { 
                 "title" : "Sass",
@@ -32,39 +32,24 @@
                 "url"  : "#",
                 "icon" : "bx bxl-github"
             }
-        ]
+        ],
+        "page" : "serestech"
     },
     {
-        "title" : "SeresTech catálogo y panel 2",
+        "title" : "Proximamente...",
         "alt"   : "here",
         "cover" : "images/carousel/2.jpg",
         "langs" : [
             { 
-                "title" : "Html",
-                "icon" : "bx bxl-html5",
-                "color" : "#E96228"
-            },
-            { 
-                "title" : "Sass",
-                "icon" : "bx bxl-sass",
-                "color" : "#C96195"
-            }
-            ,
-            { 
-                "title" : "Laravel",
-                "icon" : "bx bxs-quote-single-right",
-                "color" : "#F9322C"
-            },
-            { 
-                "title" : "Jquery",
-                "icon" : "bx bxl-jquery",
-                "color" : "#78CFF5"
+                "title" : "React",
+                "icon" : "bx bxl-react",
+                "color" : "#61DAFB"
             }
         ],
         "links" : [
             {
-                "title" : "serestech.com.mx",
-                "url"  : "https://serestech.com.mx",
+                "title" : "Sitio web",
+                "url"  : "#",
                 "icon" : "bx bx-link"
             },
             {
@@ -72,6 +57,7 @@
                 "url"  : "#",
                 "icon" : "bx bxl-github"
             }
-        ]
+        ],
+        "page" : "alternative"
     }
 ]

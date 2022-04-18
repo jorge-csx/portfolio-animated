@@ -39,7 +39,8 @@ export default function Navbar(){
     }
     
     return (
-        <nav 
+        <nav
+            id="navbar"
             className="
                 hidden min-w-fit fixed bottom-4 left-1/2 -translate-x-1/2 px-7 pb-0  z-10 gap-4 backdrop-blur rounded-full transition-all ease-in-out
                 border bg-white/80

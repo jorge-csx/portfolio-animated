@@ -9,14 +9,15 @@ export default function Projects(){
     return (
         <Section 
             id="projects"
-            className="overflow-hidden transition-all duration-300 ease-in-out
+            className="
+                overflow-hidden transition-all duration-300 ease-in-out
                 bg-gray-50/50
                 dark:bg-gray-900/30
             "
         >
             <Carousel 
-                images={ images } 
-                json={ projectsJson }
+                images={images} 
+                json={projectsJson}
             />
         </Section>
     )

@@ -1,4 +1,4 @@
-import Button from "../components/Buttons";
+import Button from "../components/Button";
 import { ExpandableLabel } from "../components/Labels";
 import { Display, Highlight } from "../components/Text";
 import { Section } from "../components/Layout";

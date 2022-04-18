@@ -1,3 +1,8 @@
+import Button from "./Button"
+import toggleClasses from "../scripts/toggleClasses"
+import { Title, Subtitle } from "./Text"
+import { useRef } from "react"
+
 /**
  * * Section props
  * id        -> Indica el id para el section, usado por la navbar
@@ -11,11 +16,11 @@ export function Section(props) {
     }
     return (
         <section
-            id={ props.id }
-            className={ "w-full h-screen px-24 py-14 flex items-center justify-center gap-8 " + props.className }
-            style={ props.bg ? bgImage : {} }
+            id={props.id}
+            className={"w-full h-screen px-24 py-14 flex items-center justify-center gap-8 " + props.className}
+            style={props.bg ? bgImage : {}}
         >
-            { props.children }
+            {props.children}
         </section>
     )
 }
@@ -31,10 +36,10 @@ export function ImageZoomIn(props) {
     function basic() {
         return (
             <img className={ "w-full h-full object-cover transition-all ease-in-out hover:scale-110 " + props.className }
-                src={ props.src }
-                onLoad={ props.onLoad }
-                onClick={ props.onClick }
-                alt={ props.alt }
+                src={props.src}
+                onLoad={props.onLoad}
+                onClick={props.onClick}
+                alt={props.alt}
             />
         )
     }
@@ -45,8 +50,8 @@ export function ImageZoomIn(props) {
                     id={props.id} 
                     className="h-full rounded-md overflow-hidden transition-all ease-in-out"
                 >
-                    <a href={ props.link } >
-                        { basic() }
+                    <a href={props.link} >
+                        {basic()}
                     </a>
                 </div>
             )
@@ -61,7 +66,7 @@ export function ImageZoomIn(props) {
                         target="_blank"
                         rel="noopener noreferrer"
                     >
-                        { basic() }
+                        {basic()}
                     </a>
                 </div>
             )
@@ -72,7 +77,7 @@ export function ImageZoomIn(props) {
                 id={props.id} 
                 className="h-full rounded-md overflow-hidden"
             >
-                { basic() }
+                {basic()}
             </div>            
         )
     }
@@ -115,13 +120,13 @@ export function Input(props) {
     return (
         <div className={"flex flex-col " + props.className}>
             <p>{props.title}</p>
-            { props.type == 'textarea' ? textarea() : input() }
+            {props.type == 'textarea' ? textarea() : input()}
         </div>  
     )
 }
 /**
  * * Icon props
- * icon      -> Clases para icono  
+ * icon      -> Clase para icono 
  * size      -> Clase para tamaño de icono
  * className -> Clases adicionales para icono
  * style     -> Añade estilos en línea
@@ -129,33 +134,35 @@ export function Input(props) {
  * link      -> Sí existe, se crea un enlace contenedor
  */
 export function Icon(props){
+    // Elemento básico
     function basic() {
         return (
             <i
-                className={ props.icon + " " + props.size + " " + props.className + " " }
-                onClick={ props.onClick }
-                style={ props.style }
+                className={props.icon + " " + props.size + " " + props.className + " "}
+                onClick={props.onClick}
+                style={props.style}
             />
         )
     }
-
+    // Verificamos si existe prop link
     if (props.link) {
+        // Sí existe, verificamos si es necesario usar target
         return (
             <div className="flex items-center">
                 <a 
-                    href={ props.link }
+                    href={props.link}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="flex"
+                    className="flex hover:text-cyan-400"
                 >
-                    { basic() }
+                    {basic()}
                 </a>
             </div>
         )
     } else {
         return (
             <div className="flex items-center">
-                { basic() }
+                {basic()}
             </div>
         )
     }
@@ -169,15 +176,108 @@ export function PopUp(props) {
     return (
         <div className="flex justify-center relative group">
 
-            { props.children }
+            {props.children}
 
             <div className="
                 border bg-slate-700 border-slate-500 text-white font-light m-4 px-2 py-0.5 absolute bottom-0 rounded-[.25rem] whitespace-nowrap transition-all ease-in-out delay-100 opacity-0 pointer-events-none
                 group-hover:mb-8 group-hover:opacity-100
                 dark:bg-gray-100 dark:border-slate-400 dark:font-normal dark:text-slate-700
             ">
-                { props.message }
+                {props.message}
             </div>
         </div>
+    )
+}
+/**
+ * * Frame
+ * children  -> Hereda elementos hijos del componente
+ * className -> Clases adicionales para icono
+ */
+export function Frame(props) {
+    function setPadding() {
+        if(!props.padding){
+            return "p-1"
+        } else {
+            return props.padding
+        }      
+    }
+    return (
+        <div className={"w-fit h-fit rounded-md  bg-gray-200/25 dark:bg-slate-700/25 border dark:border-slate-600 flex items-center " + setPadding() + " " + props.className}>
+            {props.children}
+        </div>
+    )
+}
+
+export function FrameGroup(props) {
+    return (
+        <div className="flex flex-row gap-3 items-center w-[calc(50%_-_0.5rem)]">
+            <Frame padding="p-2" className={props.frameClassName}>
+                <Icon
+                    icon={props.icon}
+                    size={props.iconSize}
+                    link={props.iconLink}
+                    className={props.iconClassName}
+                />
+            </Frame>
+            <p className="m-0 leading-[1.875rem] align-middle">
+               {props.children}
+            </p>
+        </div>
+    )
+}
+/**
+ * * Collapse
+ * 
+ * @param {string} from Tamaño colapsado
+ * @param {string} to   Tamaño completo
+ */
+export function Collapse(props) {
+    function toggleCollapse(e) {
+        const parent = e.target.parentElement.parentElement,
+              collapse = parent.querySelector("#collapse")
+
+        if (collapse.classList.contains(props.from)) {
+            toggleClasses(collapse, [props.to], [props.from])
+            e.target.textContent = "Contraer"
+        } else {
+            toggleClasses(collapse, [props.from], [props.to])
+            e.target.textContent = "Expandir"
+        }
+    }
+    return (
+        <div className={"mb-3 " + props.className}>
+            <div className="flex flex-row gap-4 items-center">
+                <Subtitle className="m-0">
+                    {props.title}
+                </Subtitle>
+                <Button
+                    text="b-to-w"
+                    onClick={(e) => toggleCollapse(e)}
+                    className="mb-3"
+                >
+                    Expandir
+                </Button>
+            </div>
+            <div id="collapse" className={"transition-all duration-300 ease-in-out overflow-hidden " + props.from + " " + props.classNameCollapse}>
+                {props.children}
+            </div>
+        </div>
+    )
+}
+/**
+ *  
+ */
+export function Sidebar(props) {
+    const items = () => {
+        console.log(props.items);
+    }
+    return (
+        <nav 
+            className="sticky top-10 w-80 h-fit"
+        >
+            <ul>
+                {items()}
+            </ul>
+        </nav>
     )
 }

@@ -33,7 +33,7 @@ export default function AboutMe(){
                         />
                     </Description>
                 </div>
-                <p>Termine mi <Highlight>carrera técnica en programación web</Highlight> en la Escuela Industrial y Preparatoria Técnica Álvaro Obregón.</p>
+                <p>Termine mi (Agregar título y lenguajes, asp, php, html, css) <Highlight>carrera técnica en programación web</Highlight> en la Escuela Industrial y Preparatoria Técnica Álvaro Obregón.</p>
                 <p>En donde adquirí <Highlight>conocimientos</Highlight> en:</p>
 
                 <div className="flex flex-row flex-wrap gap-2 py-2 mb-6">
