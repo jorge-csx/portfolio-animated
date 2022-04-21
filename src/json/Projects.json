@@ -1,10 +1,10 @@
 [
     {
-        "title" : "Catálogo SeresTech - Fullstack",
+        "title" : "Catálogo SeresTech",
         "alt"   : "serestech-catalogo-panel",
-        "cover" : "images/carousel/serestech.webp",
+        "cover" : "images/projects/serestech-catalog/portfolio-cover.webp",
         "langs" : [
-            { 
+            {
                 "title" : "Sass",
                 "icon" : "fa-brands fa-sass",
                 "color" : "#CF649A"
@@ -25,12 +25,14 @@
             {
                 "title" : "serestech.com.mx",
                 "url"  : "https://serestech.com.mx",
-                "icon" : "bx bx-link"
+                "icon" : "bx bx-link",
+                "className" : "hover:text-cyan-400"
             },
             {
                 "title" : "Repositorio",
                 "url"  : "#",
-                "icon" : "bx bxl-github"
+                "icon" : "bx bxl-github",
+                "className" : "hover:text-purple-500"
             }
         ],
         "page" : "serestech"

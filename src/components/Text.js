@@ -25,7 +25,7 @@ export function Subtitle(props){
     return (
         <h3 
             id={props.id}
-            className={"text-2xl font-medium dark:font-normal font-display mb-3 dark:text-white " + props.className}
+            className={"text-2xl font-medium dark:font-normal font-display mb-1 dark:text-white " + props.className}
         >
             {props.children}
         </h3>

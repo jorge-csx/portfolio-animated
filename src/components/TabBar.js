@@ -2,7 +2,7 @@ import sectionsJson from '../json/Sections';
 import { Icon } from './Layout';
 import Theme from './Theme';
 
-export default function Navbar(){
+export default function TabBar(){
     function indicators() {
         const indicators = []
         indicators.push(

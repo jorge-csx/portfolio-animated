@@ -26,11 +26,12 @@ export function Section(props) {
 }
 /**
  * * ImageZoomIn props
- * id      -> Establece un id para el elemento
- * src     -> Ruta de imagen a mostrar
- * alt     -> Texto alternativo para imagen
- * onClick -> Función onClick
- * onLoad  -> Función onLoad
+ * id        -> Establece un id para el elemento
+ * src       -> Ruta de imagen a mostrar
+ * alt       -> Texto alternativo para imagen
+ * className -> Clases adicionales para contenedor de imagen
+ * onClick   -> Función onClick
+ * onLoad    -> Función onLoad
  */
 export function ImageZoomIn(props) {
     function basic() {
@@ -48,7 +49,7 @@ export function ImageZoomIn(props) {
             return (
                 <div 
                     id={props.id} 
-                    className="h-full rounded-md overflow-hidden transition-all ease-in-out"
+                    className={"h-full rounded-md overflow-hidden " + props.containerClassName}
                 >
                     <a href={props.link} >
                         {basic()}
@@ -59,7 +60,7 @@ export function ImageZoomIn(props) {
             return (
                 <div 
                     id={props.id} 
-                    className="h-full rounded-md overflow-hidden transition-all ease-in-out"
+                    className={"h-full rounded-md overflow-hidden " + props.containerClassName}
                 >
                     <a 
                         href={props.link} 
@@ -75,7 +76,7 @@ export function ImageZoomIn(props) {
         return (
             <div 
                 id={props.id} 
-                className="h-full rounded-md overflow-hidden"
+                className={"h-full rounded-md overflow-hidden " + props.containerClassName}
             >
                 {basic()}
             </div>            
@@ -138,7 +139,7 @@ export function Icon(props){
     function basic() {
         return (
             <i
-                className={props.icon + " " + props.size + " " + props.className + " "}
+                className={props.icon + " " + props.size + " " + props.className + " " + "transition-all ease-in-out"}
                 onClick={props.onClick}
                 style={props.style}
             />
@@ -153,7 +154,7 @@ export function Icon(props){
                     href={props.link}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="flex hover:text-cyan-400"
+                    className="flex"
                 >
                     {basic()}
                 </a>
@@ -196,13 +197,52 @@ export function PopUp(props) {
 export function Frame(props) {
     function setPadding() {
         if(!props.padding){
-            return "p-1"
+            return "p-1 "
         } else {
-            return props.padding
+            return props.padding + " "
         }      
     }
+    function setWidth() {
+        if (!props.width) {
+            return "w-fit "
+        } else {
+            return props.width + " "
+        }
+    }
+    function setHeight() {
+        if (!props.height) {
+            return "h-fit "
+        } else {
+            return props.height + " "
+        }
+    }
+    function setStyle() {
+        const styles = [
+            {name: "normal", style: "bg-gray-200/25 dark:bg-slate-700/25 border dark:border-slate-600 "},
+            {name: "blue",   style: "bg-cyan-400 border border-cyan-500 dark:border-cyan-300 text-cyan-800 "},
+            {name: "red",    style: "bg-red-400 border border-red-500 dark:border-red-300 text-red-800 "},
+            {name: "yellow", style: "bg-yellow-400 border border-yellow-500 dark:border-yellow-300 text-yellow-800 "},
+            {name: "green",  style: "bg-emerald-400 border border-emerald-500 dark:border-emerald-300 text-emerald-800 "}
+        ]
+
+        if(!props.style){
+            return styles[0].style
+        } else {
+            let selected = styles[0].style
+
+            for (let i = 0; i < styles.length; i++) {
+                if (props.style == styles[i].name) {selected = styles[i].style}
+            }
+            
+            return selected
+        }
+    }
     return (
-        <div className={"w-fit h-fit rounded-md  bg-gray-200/25 dark:bg-slate-700/25 border dark:border-slate-600 flex items-center " + setPadding() + " " + props.className}>
+        <div className={
+                setWidth() + setHeight() + setPadding() + setStyle() +
+                "rounded-md " + props.className
+            }
+        >
             {props.children}
         </div>
     )
@@ -211,7 +251,7 @@ export function Frame(props) {
 export function FrameGroup(props) {
     return (
         <div className="flex flex-row gap-3 items-center w-[calc(50%_-_0.5rem)]">
-            <Frame padding="p-2" className={props.frameClassName}>
+            <Frame padding="p-2" className={props.frameClassName} height={props.frameHeight} width={props.frameWidth}>
                 <Icon
                     icon={props.icon}
                     size={props.iconSize}
@@ -219,7 +259,7 @@ export function FrameGroup(props) {
                     className={props.iconClassName}
                 />
             </Frame>
-            <p className="m-0 leading-[1.875rem] align-middle">
+            <p className="m-0">
                {props.children}
             </p>
         </div>
@@ -267,17 +307,36 @@ export function Collapse(props) {
 /**
  *  
  */
-export function Sidebar(props) {
-    const items = () => {
-        console.log(props.items);
-    }
+export function SideBar(props) {
+    // const setTitles = () => {
+    // }
+    // const setSubtitles = () => {
+    // }
     return (
         <nav 
-            className="sticky top-10 w-80 h-fit"
+            className={" w-1/2 h-fit " + props.className}
         >
-            <ul>
-                {items()}
-            </ul>
+            <Title>Content</Title>
+            <List>
+                {props.children}
+            </List>
         </nav>
+    )
+}
+/**
+ * * List
+ */
+export function List(props) {
+    function setType() {
+        if (!props.type) {
+            return "list-disc "
+        } else {
+            return props.type + " "
+        }
+    }
+    return (
+        <ul className={setType() + "ml-5 mb-3"}>
+            {props.children}
+        </ul>
     )
 }

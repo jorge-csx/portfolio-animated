@@ -11,6 +11,7 @@ export default function Document(props) {
         <div
             id={"doc-project"}
             className={ "p-10 w-full " + props.className}
+            ref={props.setRef}
         >
             { props.children }
         </div>
@@ -18,7 +19,6 @@ export default function Document(props) {
 }
 /**
  * * Anchor
- * Empleado dentro de contenedor de título que será referenciado
  * link -> Recibe id de elemento referenciado
  */
 export function Anchor(props) {

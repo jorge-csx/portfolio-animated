@@ -13,7 +13,7 @@ export default function AboutMe(){
             <div className="w-1/3 h-2/3 flex flex-col justify-between">
                 <Title>Competencias</Title>
                 <img 
-                    src="images/experience.png"
+                    src="images/illustrations/experience.png"
                     className=" w-96"
                     alt="ilustración-experiencia"
                 />

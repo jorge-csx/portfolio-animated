@@ -8,7 +8,7 @@ export default function Contact(){
     return (
         <Section 
             id="contact"
-            bg="images/bg/home.png"
+            bg="images/background/background.png"
             className="
                 bg-cover bg-no-repeat bg-fixed border-t bg-[center_bottom_-2rem] animate-bgSlideUp
                 dark:border-slate-600"

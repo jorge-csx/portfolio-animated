@@ -60,17 +60,33 @@ export default function Carousel(props) {
                         Creado con
                     </Description>
                     {  
-                        selectedJson.langs.map((lang, index) => (
-                            <Frame key={ index }>
-                                <PopUp message={ lang.title }>
-                                    <Icon
-                                        icon={ lang.icon }
-                                        size="text-2xl"
-                                        style={{ color : lang.color }}
-                                    />
-                                </PopUp>
-                            </Frame>
-                        ))
+                        selectedJson.langs.map((lang, index) => {
+                            if (lang.title == "Sass") {
+                                return (
+                                    <Frame key={index} className="flex items-center" width="w-[2.125rem]" height="h-[2.125rem]">
+                                        <PopUp message={lang.title}>
+                                            <Icon
+                                                icon={lang.icon}
+                                                size="text-2xl"
+                                                style={{color : lang.color}}
+                                            />
+                                        </PopUp>
+                                    </Frame>
+                                )
+                            } else {
+                                return (
+                                    <Frame key={index}>
+                                        <PopUp message={lang.title}>
+                                            <Icon
+                                                icon={lang.icon}
+                                                size="text-2xl"
+                                                style={{color : lang.color}}
+                                            />
+                                        </PopUp>
+                                    </Frame>
+                                )
+                            }
+                        })
                     }
                 </div>
             )
@@ -90,7 +106,7 @@ export default function Carousel(props) {
                                         key={index}
                                         icon={link.icon}
                                         size="text-2xl"
-                                        className="cursor-pointer"
+                                        className={"cursor-pointer " + link.className}
                                         link={link.url}
                                     />
                                 </PopUp>

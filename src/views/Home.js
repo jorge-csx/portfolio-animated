@@ -8,7 +8,7 @@ export default function Home(){
     return (
         <Section 
             id="home"
-            bg="images/bg/home.png"
+            bg="images/background/background.png"
             className="
                 bg-cover bg-no-repeat bg-fixed border-b bg-[center_bottom_-2rem] animate-bgSlideUp
                 dark:border-slate-600"
@@ -30,7 +30,7 @@ export default function Home(){
                 <Display className="dark:text-cyan-400">
                     Front-end Web Jr
                 </Display>
-                <p className="m-0">Hola, bienvenidx,</p>
+                <p className="m-0">Bienvenidos,</p>
                 <p>soy <Highlight>Jorge Soria,</Highlight> tengo <Highlight>21 años.</Highlight></p>
                 
                 <div className="my-4 grid grid-flow-col justify-start gap-4">

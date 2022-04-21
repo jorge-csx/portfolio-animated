@@ -1,5 +1,5 @@
 import { Home, Experience, Projects, Contact} from "./views";
-import Navbar from "./components/Navbar";
+import TabBar from "./components/TabBar";
 import ProjectSerestech from "./pages/ProjectSerestech";
 import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
 import useObserver from "./customHooks/useObserver";
@@ -55,7 +55,7 @@ function App() {
       // after:content-['min'] after:absolute after:bg-red-500 after:top-10 after:text-white after:left-1/2 after:-translate-1/2-full
     >
     <Router>
-      <Navbar/>
+      <TabBar/>
       <Routes>
         <Route path="/" element={
             <>
