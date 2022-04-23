@@ -11,13 +11,11 @@ import { useRef } from "react"
  * children  -> Hereda elementos hijos del componente
  */
 export function Section(props) {
-    const bgImage = {
-        backgroundImage: 'url(' + props.bg + ')'
-    }
+    const bgImage = {backgroundImage: "url(" + props.bg + ")"}
     return (
         <section
             id={props.id}
-            className={"w-full h-screen px-24 py-14 flex items-center justify-center gap-8 " + props.className}
+            className={"w-full h-screen px-24 py-14 flex items-center justify-center gap-8" + (props.className ? " " + props.className : "")}
             style={props.bg ? bgImage : {}}
         >
             {props.children}
@@ -36,7 +34,7 @@ export function Section(props) {
 export function ImageZoomIn(props) {
     function basic() {
         return (
-            <img className={ "w-full h-full object-cover transition-all ease-in-out hover:scale-110 " + props.className }
+            <img className={"w-full h-full object-cover transition-all ease-in-out hover:scale-110" + (props.className ? " " + props.className : "")}
                 src={props.src}
                 onLoad={props.onLoad}
                 onClick={props.onClick}
@@ -49,7 +47,7 @@ export function ImageZoomIn(props) {
             return (
                 <div 
                     id={props.id} 
-                    className={"h-full rounded-md overflow-hidden " + props.containerClassName}
+                    className={"h-full rounded-md overflow-hidden transition-all ease-in-out" + (props.containerClassName ? " " + props.containerClassName : "")}
                 >
                     <a href={props.link} >
                         {basic()}
@@ -60,7 +58,7 @@ export function ImageZoomIn(props) {
             return (
                 <div 
                     id={props.id} 
-                    className={"h-full rounded-md overflow-hidden " + props.containerClassName}
+                    className={"h-full rounded-md overflow-hidden transition-all ease-in-out" + (props.containerClassName ? " " + props.containerClassName : "")}
                 >
                     <a 
                         href={props.link} 
@@ -76,7 +74,7 @@ export function ImageZoomIn(props) {
         return (
             <div 
                 id={props.id} 
-                className={"h-full rounded-md overflow-hidden " + props.containerClassName}
+                className={"h-full rounded-md overflow-hidden transition-all ease-in-out" + (props.containerClassName ? " " + props.containerClassName : "")}
             >
                 {basic()}
             </div>            
@@ -139,7 +137,7 @@ export function Icon(props){
     function basic() {
         return (
             <i
-                className={props.icon + " " + props.size + " " + props.className + " " + "transition-all ease-in-out"}
+                className={props.icon + " " + props.size + " " + props.className + " transition-all ease-in-out"}
                 onClick={props.onClick}
                 style={props.style}
             />
@@ -196,25 +194,13 @@ export function PopUp(props) {
  */
 export function Frame(props) {
     function setPadding() {
-        if(!props.padding){
-            return "p-1 "
-        } else {
-            return props.padding + " "
-        }      
+        return !props.padding ? "p-1 "   : props.padding + " "
     }
     function setWidth() {
-        if (!props.width) {
-            return "w-fit "
-        } else {
-            return props.width + " "
-        }
+        return !props.width   ? "w-fit " : props.width + " "
     }
     function setHeight() {
-        if (!props.height) {
-            return "h-fit "
-        } else {
-            return props.height + " "
-        }
+        return !props.height  ? "h-fit " : props.height + " "
     }
     function setStyle() {
         const styles = [
@@ -229,18 +215,16 @@ export function Frame(props) {
             return styles[0].style
         } else {
             let selected = styles[0].style
-
             for (let i = 0; i < styles.length; i++) {
                 if (props.style == styles[i].name) {selected = styles[i].style}
             }
-            
             return selected
         }
     }
     return (
         <div className={
                 setWidth() + setHeight() + setPadding() + setStyle() +
-                "rounded-md " + props.className
+                "rounded-md " + (props.className ? " " + props.className : "")
             }
         >
             {props.children}
@@ -272,33 +256,30 @@ export function FrameGroup(props) {
  * @param {string} to   Tamaño completo
  */
 export function Collapse(props) {
-    function toggleCollapse(e) {
+    function setToggleCollapse(e) {
         const parent = e.target.parentElement.parentElement,
               collapse = parent.querySelector("#collapse")
 
         if (collapse.classList.contains(props.from)) {
             toggleClasses(collapse, [props.to], [props.from])
-            e.target.textContent = "Contraer"
+            e.target.textContent = "Ocultar"
         } else {
             toggleClasses(collapse, [props.from], [props.to])
-            e.target.textContent = "Expandir"
+            e.target.textContent = "Mostrar"
         }
     }
     return (
-        <div className={"mb-3 " + props.className}>
-            <div className="flex flex-row gap-4 items-center">
-                <Subtitle className="m-0">
-                    {props.title}
-                </Subtitle>
+        <div className={"mb-3 relative" + (props.className ? " " + props.className : "")}>
+            <div className="absolute right-0 bottom-full">
                 <Button
                     text="b-to-w"
-                    onClick={(e) => toggleCollapse(e)}
-                    className="mb-3"
+                    onClick={(e) => setToggleCollapse(e)}
+                    className="flex justify-center mb-2 w-[6.426rem]"
                 >
-                    Expandir
+                    Mostrar
                 </Button>
             </div>
-            <div id="collapse" className={"transition-all duration-300 ease-in-out overflow-hidden " + props.from + " " + props.classNameCollapse}>
+            <div id="collapse" className={"transition-all duration-300 ease-in-out overflow-hidden " + props.from + (props.classNameCollapse ? " " + props.classNameCollapse : "")}>
                 {props.children}
             </div>
         </div>
@@ -308,18 +289,17 @@ export function Collapse(props) {
  *  
  */
 export function SideBar(props) {
-    // const setTitles = () => {
-    // }
-    // const setSubtitles = () => {
-    // }
+    function setWidth() {
+        return !props.width ? "w-1/3 "  : props.width + " "
+    }
+    function setHeight() {
+        return !props.height ? "h-[calc(100vh_-_2.5rem)] " : props.height + " "
+    }
     return (
         <nav 
-            className={" w-1/2 h-fit " + props.className}
+            className={setWidth() + setHeight() + "overflow-y-auto" + (props.className ? " " + props.className : "")}
         >
-            <Title>Content</Title>
-            <List>
-                {props.children}
-            </List>
+            {props.children}
         </nav>
     )
 }
@@ -328,14 +308,13 @@ export function SideBar(props) {
  */
 export function List(props) {
     function setType() {
-        if (!props.type) {
-            return "list-disc "
-        } else {
-            return props.type + " "
-        }
+        return !props.type ? "" : props.type + " "
+    }
+    function setMargin() {
+        return !props.margin ? "mb-3 " : props.margin + " "
     }
     return (
-        <ul className={setType() + "ml-5 mb-3"}>
+        <ul className={setType() + setMargin() + "ml-5" + (props.className ? " " + props.className : "")}>
             {props.children}
         </ul>
     )

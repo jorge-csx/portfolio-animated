@@ -63,7 +63,7 @@ export default function Carousel(props) {
                         selectedJson.langs.map((lang, index) => {
                             if (lang.title == "Sass") {
                                 return (
-                                    <Frame key={index} className="flex items-center" width="w-[2.125rem]" height="h-[2.125rem]">
+                                    <Frame key={index} className="flex items-center overflow-hidden" width="w-[2.125rem]" height="h-[2.125rem]">
                                         <PopUp message={lang.title}>
                                             <Icon
                                                 icon={lang.icon}
@@ -186,7 +186,7 @@ export default function Carousel(props) {
             return (
                 <p 
                     className="
-                        bg-slate-800/80 rounded-md px-5 py-2 absolute bottom-0 left-1/2 -translate-x-1/2 text-white pointer-events-none transition-all ease-in-out
+                        bg-slate-800/80 rounded-md px-5 py-2 absolute bottom-0 left-1/2 -translate-x-1/2 text-white pointer-events-none transition-all duration-300 ease-in-out
                         -mb-4 opacity-0
                         group-hover:mb-4 group-hover:opacity-100
                     "
@@ -199,7 +199,7 @@ export default function Carousel(props) {
         return (
             <div 
                 id="cover"
-                className="w-full h-full overflow-hidden relative group"
+                className="w-full h-full overflow-hidden relative group scroll-smooth"
             >
                 <ImageZoomIn
                     id={id}
@@ -207,6 +207,7 @@ export default function Carousel(props) {
                     link="#projects"
                     blank="none"
                     className="cursor-pointer"
+                    containerClassName="duration-300 border dark:border-slate-600"
                     alt={"portada-" + selectedJson.alt}
                     onClick={() => viewProject()}
                 />
@@ -220,30 +221,29 @@ export default function Carousel(props) {
      * Función para ejecutar animaciones de transición al hacer clic sobre la imagen contenida en cover
      */
     function viewProject() {
-
-        const section = document.querySelector("#projects"),
-              carousel = section.querySelector("div"),
-              title = carousel.querySelector("h1"),
-              actionsBar = carousel.querySelector("#actions-bar"),
+        const section           = document.querySelector("#projects"),
+              carousel          = section.querySelector("div"),
+              title             = carousel.querySelector("h1"),
+              actionsBar        = carousel.querySelector("#actions-bar"),
               actionsBarButtons = actionsBar.querySelector("#buttons"),
-              cover = carousel.querySelector("#cover"),
-              imageContainer = cover.firstChild,
-              message = cover.querySelector("p"),
-              buttonView = actionsBar.querySelector("#button-view"),
-              projectDoc = cover.querySelector("#doc-project"),
-              navbar = document.querySelector("nav")
+              cover             = carousel.querySelector("#cover"),
+              imageContainer    = cover.firstChild,
+              caption           = cover.querySelector("p"),
+              buttonView        = actionsBar.querySelector("#button-view"),
+              navbar            = document.querySelector("#navbar"),
+              doc               = document.querySelector("#doc-project")
 
         if (projectState == 0) {
             toggleClasses(section, "", ["px-24", "py-14"])
             toggleClasses(title, ["p-6", "pb-0"])
             toggleClasses(actionsBar, ["p-6", "pb-5", "pt-0", "border-b", "dark:border-slate-600"], ["mb-3"])
             toggleClasses(actionsBarButtons, ["hidden"], ["flex"])
-            toggleClasses(imageContainer, ["pointer-events-none", "h-2/3", "border-b", "dark:border-b-slate-600"], ["h-full", "rounded-md", "cursor-pointer"])
-            toggleClasses(message, ["hidden"])
+            toggleClasses(imageContainer, ["pointer-events-none", "h-2/3", "border-b", "dark:border-b-slate-600"], ["h-full", "rounded-md", "border", "cursor-pointer"])
+            toggleClasses(caption, ["hidden"])
             toggleClasses(buttonView, "", ["hidden"])
             toggleClasses(navbar, ["-bottom-14"], ["bottom-4"])
             toggleClasses(cover, ["overflow-y-auto"], ["overflow-hidden"])
-            toggleClasses(projectDoc, "", ["hidden"])
+            toggleClasses(doc, "", ["hidden"])
 
             toggleClasses(document.querySelector("#root div"), ["overflow-hidden"], ["overflow-y-auto"])
             toggleClasses(document.querySelector("#contact"), ["hidden"])
@@ -254,12 +254,12 @@ export default function Carousel(props) {
             toggleClasses(title, "", ["p-6", "pb-0"])
             toggleClasses(actionsBar, ["mb-3"], ["p-6", "pb-5", "pt-0", "border-b", "dark:border-slate-600"])
             toggleClasses(actionsBarButtons, ["flex"], ["hidden"])
-            toggleClasses(imageContainer, ["h-full", "rounded-md", "cursor-pointer"], ["pointer-events-none", "h-2/3", "border-b", "dark:border-b-slate-600"])
-            toggleClasses(message, "", ["hidden"])
+            toggleClasses(imageContainer, ["h-full", "rounded-md", "border", "cursor-pointer"], ["pointer-events-none", "h-2/3", "border-b", "dark:border-b-slate-600"])
+            toggleClasses(caption, "", ["hidden"])
             toggleClasses(buttonView, ["hidden"])
             toggleClasses(navbar, ["bottom-4"], ["-bottom-14"])
             toggleClasses(cover, ["overflow-hidden"], ["overflow-y-auto"])
-            toggleClasses(projectDoc, ["hidden"])
+            toggleClasses(doc, ["hidden"])
 
             toggleClasses(document.querySelector("#root div"), ["overflow-y-auto"], ["overflow-hidden"])
             toggleClasses(document.querySelector("#contact"), "", ["hidden"])

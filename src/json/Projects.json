@@ -2,7 +2,7 @@
     {
         "title" : "Catálogo SeresTech",
         "alt"   : "serestech-catalogo-panel",
-        "cover" : "images/projects/serestech-catalog/portfolio-cover.webp",
+        "cover" : "images/projects/serestech-catalog/cover.webp",
         "langs" : [
             {
                 "title" : "Sass",
@@ -40,7 +40,7 @@
     {
         "title" : "Proximamente...",
         "alt"   : "here",
-        "cover" : "images/carousel/2.jpg",
+        "cover" : "images/projects/test/cover.jpg",
         "langs" : [
             { 
                 "title" : "React",

@@ -1,20 +1,20 @@
 import Document from "../components/Document"
-import { Title, Subtitle, Description, Highlight, Bold } from "../components/Text"
+import { Title, Subtitle, Description, Highlight, Bold, Header } from "../components/Text"
 import { Frame, FrameGroup, Icon, Collapse, SideBar, ImageZoomIn, List } from "../components/Layout"
 import { useEffect, useRef, useState } from "react"
 import Button from "../components/Button"
+import toggleClasses from "../scripts/toggleClasses"
 
 export default function ProjectSerestech() {
-    const [loaded, setLoaded] = useState(false)
 
     function Introduction() {
         return (
             <section>
-                <Title id="sobre-el-proyecto" className="scroll-mt-10">
+                <Header>
                     Sobre el proyecto
-                </Title>
+                </Header>
                 <p>
-                    SeresTech es una pyme especializada en la compra y venta de laptops, a cargo de un amigo y su jefe.
+                    SeresTech es una pyme especializada en la compra y venta de laptops, a cargo de un par de socios, uno de ellos mi amigo.
                     Como parte de su expansión requerían de un sitio para optimizar procesos de atención de clientes,
                     conversión de usuarios, y administración de stock. 
                 </p>
@@ -37,9 +37,9 @@ export default function ProjectSerestech() {
     function Tools() {
         return (
             <section>
-                <Title id="herramientas" className="mt-10 scroll-mt-10">
+                <Header>
                     Herramientas
-                </Title>
+                </Header>
                 <div className="flex flex-wrap gap-4 mb-3 border dark:border-slate-600 rounded-md p-4">
                     <FrameGroup
                         icon="fa-brands fa-laravel"
@@ -62,11 +62,12 @@ export default function ProjectSerestech() {
                         <Bold>Jquery</Bold> implementa UX y query's CRUD.
                     </FrameGroup>
                 </div>
+                <Title>
+                    Librerías
+                </Title>
                 <Collapse
-                    title="Librerías"
                     from="max-h-[9rem]"
                     to="max-h-[62.5rem]"
-                    className="mt-6"
                     classNameCollapse="w-full flex flex-wrap gap-4 border dark:border-slate-600 rounded-md p-4"
                 >
                     <FrameGroup
@@ -143,9 +144,9 @@ export default function ProjectSerestech() {
                     </FrameGroup>
                 </Collapse>
 
-                <Subtitle className="mt-6">
+                <Title>
                     Tests
-                </Subtitle>
+                </Title>
                 <p>Los siguientes sitios han sido utilizados para evaluar la velocidad del proyecto.</p>
                 <div className="flex flex-wrap gap-4 mb-3 border dark:border-slate-600 rounded-md p-4">
                     <FrameGroup
@@ -171,18 +172,18 @@ export default function ProjectSerestech() {
     function Requirements() {
         return (
             <section>
-                <Title id="requisitos" className="mt-10">
+                <Header>
                     Requisitos
-                </Title>
+                </Header>
                 <div className="flex flex-wrap gap-4">
                     <Frame
                         width="w-[calc(50%_-_.5rem)]"
                         height="h-auto"
                         padding="p-4"
                     >
-                        <Subtitle>
+                        <Title>
                             Diseño UI
-                        </Subtitle>
+                        </Title>
                         <ul className="list-disc ml-5">
                             <li>Estilo llamativo, moderno y orientado a la marca visual.</li>
                             <li>Carrusel de imágenes.</li>
@@ -193,9 +194,9 @@ export default function ProjectSerestech() {
                         height="h-auto"
                         padding="p-4"
                     >
-                        <Subtitle>
+                        <Title>
                             SEO
-                        </Subtitle>
+                        </Title>
                         <ul className="list-disc ml-5">
                             <li>Sitio optimizado para ser promocionado en futuras campañas de Google Ads.</li>
                         </ul>  
@@ -205,9 +206,9 @@ export default function ProjectSerestech() {
                         height="h-auto"
                         padding="p-4"
                     >
-                        <Subtitle>
+                        <Title>
                             Funciones UX
-                        </Subtitle>
+                        </Title>
                         <ul className="list-disc ml-5">
                             <li>Consultas en el sitio a través del plugin de Messenger.</li>
                             <li>Consultas y proceso de compra a través del rediccionamiento desde la página de un producto de interés hacia WhatsApp por medio de su API.</li>
@@ -221,16 +222,14 @@ export default function ProjectSerestech() {
                         height="h-auto"
                         padding="p-4"
                     >
-                        <Subtitle>
+                        <Title>
                             Administración
-                        </Subtitle>
+                        </Title>
                         <ul className="list-disc ml-5">
                             <li>Un punto de acceso por medio de un login reservado —por el momento— para usuarios con rol de administrador.</li>
                             <li>CRUD para el manejo de stock y contenido visual del sitio, como lo son las imágenes que componen el carrusel.</li>
                         </ul>
                     </Frame>
-                    
-                    
                 </div>
             </section>
         )
@@ -238,9 +237,9 @@ export default function ProjectSerestech() {
     function Structure() {
         return (
             <section>
-                <Title id="construccion" className="mt-10">
+                <Header>
                     Construcción
-                </Title>
+                </Header>
                 <p>
                     Después de una platica inicial para acordar los requisitos, comencé
                     con la construcción del sitio por el Front-end. 
@@ -257,18 +256,18 @@ export default function ProjectSerestech() {
                     con el objetivo de encontrar areas de oportunidad y estrategias UI/UX
                     que podríamos replicar.
                 </p>
-                <Subtitle id="revisiones-semanales" className="mt-3">
+                <Title>
                     Revisiones semanales
-                </Subtitle>
+                </Title>
                 <p>
                     Parte del acuerdo, implicaba revisiones semanales de los avances del
                     proyecto, cambios constantes. Para lo cual busque que mi flujo de
                     trabajo estuviera orientado en principios Agiles para lograr hacer
                     frente a la evolución del proyecto.
                 </p>
-                <Subtitle id="diseno" className="mt-10">
+                <Title>
                     Diseño
-                </Subtitle>
+                </Title>
                 <p>
                     Como consideraciones iniciales tomamos en cuenta que el sitio de
                     nuestro competidor directo tiene un diseño desactualizado y una
@@ -302,33 +301,33 @@ export default function ProjectSerestech() {
                     Tras una semana entregue mi propuesta y después de unos ligeros
                     cambios estuvimos de acuerdo y listos para continuar con el siguiente paso.
                 </p>
-                <Subtitle id="front-end" className="mt-10">
+                <Title>
                     Front-end
-                </Subtitle>
+                </Title>
                 <p>
                     Para comenzar con la maquetación Front-end me enfoque en organizar
                     el directorio en pequeños módulos y en diseñar estilos para los
                     componentes UI con Sass, después utilizando Blade construí la
                     estructura, y termine agregando funciones UX con JavaScript y Jquery.
                 </p>
-                <h4>
+                <Subtitle>
                     Google Fonts
-                </h4>
+                </Subtitle>
                 <p>
                     Para las fuentes seleccioné Inter en encabezados h1 y h2, y Open Sans
                     en encabezados h3 y contenido general.
                 </p>
-                <h4>
+                <Subtitle>
                     Sass
-                </h4>
-                <Description>
-                    Puede encontrar los ficheros Sass en resources\scss y el Css compilado
-                    en public\storage\css.
+                </Subtitle>
+                <Description type="quote">
+                    Puede encontrar los ficheros Sass en <Highlight>resources\scss</Highlight> y el Css compilado
+                    en <Highlight>public\storage\css</Highlight>
                 </Description>
                 <p>
                     Estructura y función de ficheros:
                 </p>
-                <List>
+                <List type="list-disc">
                     <li><Bold>Abstracts</Bold> mantiene las variables aisladas.</li>
                     <li><Bold>Components</Bold> contiene los estilos de elementos UI reutilizables.</li>
                     <li><Bold>Pages</Bold> maneja estilos de único uso para cada vista.</li>
@@ -337,16 +336,16 @@ export default function ProjectSerestech() {
                 <p>
                     Estos ficheros son indexados en main.scss para posteriormente ser compilados.
                 </p>
-                <h4>
+                <Subtitle>
                     Blade
-                </h4>
-                <Description>
-                    Puede encontrar los ficheros en resources\views.
+                </Subtitle>
+                <Description type="quote">
+                    Puede encontrar los ficheros en <Highlight>resources\views</Highlight>
                 </Description>
                 <p>
                     Estructura y función de ficheros:
                 </p>
-                <List>
+                <List type="list-disc">
                     <li><Bold>Auth</Bold> separa las vistas empleadas para el login.</li>
                     <li><Bold>Components</Bold> contiene código html reutilizable.</li>
                     <li><Bold>Docs</Bold> contiene todos los documentos que sean necesarios agregar al sitio.</li>
@@ -358,9 +357,9 @@ export default function ProjectSerestech() {
                     La forma en que estos ficheros trabajan es encapsulando una vista dentro de
                     un template y en esta vista se insertan los componentes que se necesiten.
                 </p>
-                <Subtitle id="back-end" className="mt-10">
+                <Title>
                     Back-end
-                </Subtitle>
+                </Title>
                 <p>
                     Una vez definido el paso anterior, continué con la lógica del sitio. Debido
                     a que mi especialidad no es esta area, elegí el Framework de Laravel, el cual
@@ -368,33 +367,33 @@ export default function ProjectSerestech() {
                     pocas líneas de código para insertar una función optimizada y que no
                     comprometela seguridad del Back-end.
                 </p>
-                <h4>
+                <Subtitle>
                     Base de datos
-                </h4>
+                </Subtitle>
                 <p>
                     Para la base de datos utilice relaciones muchos a uno para la tabla category y
                     uno a uno para el resto. A largo plazo serán añadidas más categorías y
                     especificaciones para cada una de estas.
                 </p>
-                <Description>
-                    Puede encontrar estas relaciones en app\Http\Models
+                <Description type="quote">
+                    Puede encontrar estas relaciones en <Highlight>app\Http\Models</Highlight>
                 </Description>
-                <h4>
+                <Subtitle>
                     Login
-                </h4>
-                <Description>
-                    Puede encontrar el controlador en app\Http\Controllers\LoginController.php 
+                </Subtitle>
+                <Description type="quote">
+                    Puede encontrar el controlador en <Highlight>app\Http\Controllers\LoginController.php</Highlight>
                 </Description>
                 <p>
                     El login es una de las herramientas que Laravel ya tiene integradas. La lógica
                     básica del formulario en esta vista envía un email y password por POST para ser
                     comparados con los registros en la tabla  user.
                 </p>
-                <h4>
+                <Subtitle>
                     CRUD
-                </h4>
-                <Description>
-                    Puede encontrar el controlador en app\Http\Controllers\PanelController.php
+                </Subtitle>
+                <Description type="quote">
+                    Puede encontrar el controlador en <Highlight>app\Http\Controllers\PanelController.php</Highlight>
                 </Description>
                 <p>
                     El CRUD es accesible para cualquier usuario administrador. Emplea el middleware
@@ -406,9 +405,9 @@ export default function ProjectSerestech() {
                     formulario necesario por medio de Jquery. Solamente Update cuenta con Ajax,
                     utilizado para eliminar imágenes existentes sin recargar la página.
                 </p>
-                <h4>
+                <Subtitle>
                     Almacenamiento de imágenes
-                </h4>
+                </Subtitle>
                 <p>
                     Para el almacenamiento de imágenes utilice los facades Storage e Image.
                 </p>
@@ -417,19 +416,19 @@ export default function ProjectSerestech() {
                     procesa estas imágenes antes de que sean almacenadas en el host, recortándolas
                     y cambiando su formato a webp.
                 </p>
-                <h4>
+                <Subtitle>
                     Mostrar registros
-                </h4>
+                </Subtitle>
                 <p>
                     Para mostrar registros en las vistas realice consultas en el controlador
                     PanelController.php que devolvía un objeto con los registros, los cuales eran
                     enviados directamente a la vista para ser iterados.
                 </p>
-                <h4>
+                <Subtitle>
                     Búsquedas
-                </h4>
-                <Description>
-                    Puede encontrar el controlador en app\Http\Controllers\SearchController.php
+                </Subtitle>
+                <Description type="quote">
+                    Puede encontrar el controlador en <Highlight>app\Http\Controllers\SearchController.php</Highlight>
                 </Description>
                 <p>
                     Para el motor de búsquedas inicialmente utilice solo el paquete Scout, sin
@@ -445,18 +444,18 @@ export default function ProjectSerestech() {
                     Esta búsqueda se realiza comparando la palabra introducida en el input de búsqueda
                     con varios campos de la tabla specifications_laptops.
                 </p>
-                <Description>
-                    Puede encontrar dichos campos en el modelo SpecificationsLaptop en la función toSearchableArray.
+                <Description type="quote">
+                    Puede encontrar dichos campos en el modelo <Highlight>SpecificationsLaptop</Highlight> en la función <Highlight>toSearchableArray</Highlight>
                 </Description>
-                <h4>
+                <Subtitle>
                     Filtros 
-                </h4>
-                <Description>
-                    Puede encontrar la función sort en el controlador HomeController.
-                </Description>
-                <Subtitle id="seo-y-sem" className="mt-10">
-                    SEO y SEM
                 </Subtitle>
+                <Description type="quote">
+                    Puede encontrar la función sort en el controlador <Highlight>HomeController</Highlight>
+                </Description>
+                <Title>
+                    SEO y SEM
+                </Title>
                 <p>
                     En cuanto al SEO, por el momento se ha limitado al uso de keywords y description
                     en las etiquetas meta de la vista home, la etiqueta title en el head de las
@@ -466,23 +465,23 @@ export default function ProjectSerestech() {
                     Esta optimización aún se encuentra en desarrollo con el objetivo de introducir
                     campañas publicitarias.
                 </p>
-                <Subtitle id="deploy" className="mt-10">
+                <Title>
                     Deploy
-                </Subtitle>
+                </Title>
                 <p>
                     Con el Front-end y Back-end listos, era hora de subir el sitio, para ello, la
                     empresa contaba con un host disponible en donde directamente subí el directorio.
                 </p>
-                <h4>
+                <Subtitle>
                     Test de velocidad
-                </h4>
+                </Subtitle>
                 <p>
                     Con el sitio en línea, me dedique a optimizarlo realizando cambios recomendados
                     por las aplicaciones de PageSpeed Insights y Test My Site.
                 </p>
-                <h4>
+                <Subtitle>
                     Mantenimiento
-                </h4>
+                </Subtitle>
                 <p>
                     Con la entrega del proyecto se daba comienzo al periodo de mantenimiento
                     trimestral, atendiendo cualquier problema que pueda surgir y agregando pequeñas
@@ -493,7 +492,7 @@ export default function ProjectSerestech() {
     }
     function Footer() {
         return (
-            <div className="w-fit grid grid-cols-2 mb-10 m-auto gap-x-4 gap-y-2">
+            <div className="w-fit grid grid-cols-2 mt-10 m-auto gap-x-4 gap-y-2">
                 <Frame
                     className="flex justify-self-end"
                 >
@@ -519,83 +518,9 @@ export default function ProjectSerestech() {
             </div>
         )
     }
-
-    // function indexSideBar() {
-    //     const doc = document.querySelector("#doc-project")
-    //     const sections = doc.querySelectorAll("article section")
-
-
-    //     sections.forEach((section) => {
-    //         let headlines = section.querySelectorAll("h2, h3, h4") // Array de elementos
-
-            
-    //         headlines.forEach((headline) => {
-    //             let textContent = headline.textContent
-    //             let tagName = headline.tagName
-    //         })
-    //     })
-
-    //     return (
-    //         <div>
-    //             hi
-    //         </div>
-    //     )
-    // }
-
-    
-    const doc = useRef()
-
-    const setItemsSideBar = () => {
-        if (doc.current) {
-            const sections = doc.current.querySelectorAll("article section")
-            const headlines = []
-            const items = []
-
-            sections.forEach(section => {
-                headlines.push(section.querySelectorAll("h2, h3, h4"))
-            });
-
-            // console.log(headlines)
-
-            headlines.map((headline) => {
-                headline.forEach((hl, index) => {
-                    if (hl.tagName == "H2") {
-                        items.push(
-                            <li className="text-blue-400">{hl.textContent}</li>
-                        )
-                    } else if (hl.tagName == "H3") {
-                        items.push(
-                            <List>
-                                <li className="text-red-400">{hl.textContent}</li>
-                            </List>
-                        )
-                    } else if (hl.tagName == "H4") {
-                        items.push(
-                            <List>
-                                <List>
-                                    <li className="text-green-400">{hl.textContent}</li>
-                                </List>
-                            </List>
-                        )
-                    }
-                })
-            })
-            console.log(items);
-
-            return items
-
-        }
-    }
-
-
     return (
-        <Document className="flex flex-row gap-4" setRef={doc}>
-            <SideBar className="border border-red-400">
-                
-                {setItemsSideBar()}
-
-            </SideBar>
-            <article className="w-full">
+        <Document className="flex flex-row gap-4">
+            <article className="w-full p-4">
                 <Introduction/>
                 <Tools/>
                 <Requirements/>
