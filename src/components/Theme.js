@@ -60,32 +60,11 @@ export default function Theme(){
     }
     /**
      * @subcomponent
-     * * themes
+     * * setThemes
      * Este subcomponente contiene los temas disponibles, solo es mostrado al hacer clic
      * sobre el icono de temas en la TabBar y se oculta cuando este pierde el hover
      */
-    function themes() {
-        function setThemes() {
-            return (
-                appTheme.themes.map((mode, index) => (
-                    <li 
-                        key={index}
-                        className={toggleActiveStyles(index) +
-                            "flex flex-row items-center justify-center gap-2 cursor-pointer py-1 px-2 rounded-full group outline-none"
-                        }
-                        onClick={() => setStorage(mode.theme, index)}
-                    >
-                        <Icon
-                            icon={mode.icon}
-                            size="text-xl"
-                        />
-                        <span>
-                            {mode.title}
-                        </span>
-                    </li>
-                ))
-            )
-        }
+    function setThemes() {
         return (
             <ul 
                 id="options"
@@ -94,7 +73,26 @@ export default function Theme(){
                     dark:border-slate-600 dark:bg-slate-800
                 "
             >
-                {setThemes()}
+                {
+                    appTheme.themes.map((mode, index) => (
+                        
+                            <li 
+                                key={index}
+                                className={toggleActiveStyles(index) +
+                                    "flex flex-row items-center justify-center gap-2 cursor-pointer py-1 px-2 rounded-full group outline-none"
+                                }
+                                onClick={() => setStorage(mode.theme, index)}
+                            >
+                                <Icon
+                                    icon={mode.icon}
+                                    size="text-xl"
+                                />
+                                <span>
+                                    {mode.title}
+                                </span>
+                            </li>
+                    ))
+                }
             </ul>
         )
     }
@@ -145,7 +143,7 @@ export default function Theme(){
     }
     return (
         <div className="relative flex items-center justify-center group">
-            {themes()}
+            {setThemes()}
             <Icon
                 icon={setNavBarIcon()}
                 size="text-2xl"

@@ -47,7 +47,7 @@ export default function Home(){
                         content="jorge_soriaw@outlook.com"
                         link="mailto:jorge_soriaw@outlook.com"
                         iconF="bx bx-copy"
-                        onClick={ copyToClipBoard }
+                        onClick={copyToClipBoard}
                     />
                 </div>
                 <p>Disfruto del <Highlight>diseño digital, UI/UX,</Highlight> y de la <Highlight>programación</Highlight> en general.</p>

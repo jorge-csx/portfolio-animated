@@ -1,20 +1,20 @@
+import { useEffect } from "react"
+
 /**
  * @function copyToClipBoard
  * Esta función permite copiar el contenido de un input al portapapeles
- * Es usado en la sección de inicio, en la label correo, 
- * con un input oculto el cual replica el contenido de la label
  */
 export default function copyToClipBoard(e){
-    const copyParent = e.target.parentElement,
-          copyInput = copyParent.querySelector('#copyInput'),
+    const copyParent = e.target.parentElement.parentElement,
+          copyInput = copyParent.querySelector('.copyInput'),
           target = e.target
-    
-    copyAnimation()
 
-    // Se copia el contenido de la label en navegadores para escritorio y móvil
-    copyInput.select()
-    copyInput.setSelectionRange(0, 99999)
-    navigator.clipboard.writeText(copyInput.value)
+        copyAnimation()
+    
+        // Se copia el contenido de la label en navegadores de escritorio y móvil
+        copyInput.select()
+        copyInput.setSelectionRange(0, 99999)
+        navigator.clipboard.writeText(copyInput.value)
     
     /**
      * @function copyAnimation

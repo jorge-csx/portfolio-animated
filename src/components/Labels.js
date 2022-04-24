@@ -53,12 +53,13 @@ export function ExpandableLabel(props) {
         function input(){
             return (
                 <input 
-                    className="w-0"
-                    id="copyInput"
+                    className="w-0 copyInput"
                     value={props.content} 
                     type="text"
                     readOnly
                     tabIndex="-1"
+                    title="copy-input-hidden"
+                    placeholder="Correo a copiar"
                 />
             )
         } 
@@ -72,7 +73,7 @@ export function ExpandableLabel(props) {
                     tabIndex="-1"
                 >
                     {basic()}
-                    {props.onClick == copyToClipBoard ? input() : ''}
+                    {props.onClick === copyToClipBoard ? input() : ""}
                 </a>
             )
         } else {
