@@ -1,91 +1,89 @@
 /**
- * * Button props
- * id        -> Establece el id
- * type      -> Establece el tipo de button
- * style     -> Compara name en [styles] con prop, para establecer el énfasis de color para el bg, ring y border, y para los estados hover, focus y active
- * text      -> Compara name en [texts] con prop, para establecer la combinación light y dark de colores para el text
- * padding   -> Compara name en [paddings] con prop, para establecer el padding
- * rounded   -> Establece el rounded
- * className -> Clases adicionales
- * onClick   -> Función onClick
+ * @component
+ * * Button
+ * Este componente es nu botón personalizable
+ * 
+ * @param {string}   id        — Establece el id para botón
+ * @param {string}   type      — Establece el tipo de botón
+ * @param {string}   style     — Parámetro para setStyle(), es comparado con styles.name
+ * @param {string}   padding   — Establece padding
+ * @param {string}   rounded   — Establece border-radius 
+ * @param {string}   text      — Establece colores para el texto
+ * @param {string}   className — Establece clases adicionales
+ * @param {function} onClick   — Establece función para onClick
  */
-/** */
 export default function Button(props) {
     const setType = () => {
         return props.type ? props.type : "button"
     }
     const setStyle = () => {
+        // Styles para background, ring y border de button y sus estados hover, focus y active
         const styles = [
-            { name: "normal", emphasis: "bg-white dark:bg-slate-800 hover:ring-cyan-400 focus:ring-cyan-400 active:bg-gray-100 dark:active:bg-slate-700 border dark:border-slate-600" },
-            { name: "cta",    emphasis: "bg-cyan-400 hover:ring-cyan-400 focus:ring-cyan-400 active:bg-cyan-500" }
+            {name: "normal", style: "bg-white dark:bg-slate-800 hover:ring-cyan-400 focus:ring-cyan-400 active:bg-gray-100 dark:active:bg-slate-700 border dark:border-slate-600"},
+            {name: "cta",    style: "bg-cyan-400 hover:ring-cyan-400 focus:ring-cyan-400 active:bg-cyan-500"}
         ]
 
         if (props.style) {
-            let emphasisSelected = ""
-            
+            let selected = ""
+
             styles.map((style) => {
-                if (props.style == style.name) { emphasisSelected = style.emphasis }
+                props.style == style.name ? selected = style.style : selected = styles[0].style
             })
 
-            return emphasisSelected
+            return selected + " "
         } else {
-            return styles[0].emphasis
+            return styles[0].style + " "
         }
     }
     const setPadding = () => {
         const paddings = [
-            { name: "normal", size: "px-5 py-2" },
-            { name: "small",  size: "py-10" },
-            { name: "equal",  size: "p-2" },
-            { name: "none",   size: "p-0" }
+            {name: "normal", size: "px-5 py-2"},
+            {name: "small",  size: "py-10"},
+            {name: "equal",  size: "p-2"},
+            {name: "none",   size: "p-0"}
         ]
 
         if(props.padding){
-            let paddingSelected = ""
+            let selected = ""
 
             paddings.map((padding) => {
-                if (props.padding == padding.name) { paddingSelected = padding.size }
+                return props.padding == padding.name ? selected = padding.size : paddings[0].size
             })
 
-            return paddingSelected
+            return selected + " "
         } else {
-            return paddings[0].size
+            return paddings[0].size + " "
         }
     }
     const setRounded = () => {
-        return props.rounded ? props.rounded : "rounded-full"
+        return props.rounded ? props.rounded + " " : "rounded-full "
     }
     const setText = () => {
         const texts = [
-            { name: "w-to-b", color: "text-white dark:text-slate-800" },
-            { name: "b-to-w", color: "text-slate-800 dark:text-white" },
-            { name: "b-to-g", color: "text-slate-800 dark:text-slate-400" }
+            {name: "w-to-b", color: "text-white dark:text-slate-800"},
+            {name: "b-to-w", color: "text-slate-800 dark:text-white"},
+            {name: "b-to-g", color: "text-slate-800 dark:text-slate-400"}
         ]
 
         if (props.text) {
-            let textSelected = ""
+            let selected = ""
 
             texts.map((text) => {
-                if (props.text == text.name) {
-                    textSelected = text.color
-                } else {
-                    textSelected = props.text
-                }
+                return props.text == text.name ? selected = text.color : selected = props.text
             })
 
-            return textSelected
+            return selected + " "
         } else {
-            return texts[0].color
+            return texts[0].color + " "
         }
     }
-
     return (
         <button
             id={props.id}
-            type={ setType() }
+            type={setType()}
             className={
-                setStyle() + " " + setPadding() + " " + setRounded() + " " + setText() + (props.className ? " " + props.className : "") + 
-                " flex flex-row gap-2 font-medium dark:font-semibold outline-none ring-transparent ring-offset-2 ring-offset-white dark:ring-offset-slate-800 transition-all ease-in-out hover:ring-2 focus:ring-2"
+                setStyle() + setPadding() + setRounded() + setText() + (props.className ? props.className + " " : "") + 
+                "flex flex-row gap-2 font-medium dark:font-semibold outline-none ring-transparent ring-offset-2 ring-offset-white dark:ring-offset-slate-800 transition-all ease-in-out hover:ring-2 focus:ring-2"
             }
             onClick={props.onClick}
         >

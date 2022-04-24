@@ -1,14 +1,14 @@
 import Button from "./Button"
 import toggleClasses from "../scripts/toggleClasses"
-import { Title, Subtitle } from "./Text"
-import { useRef } from "react"
-
 /**
- * * Section props
- * id        -> Indica el id para el section, usado por la navbar
- * bg        -> Sí existe, se asigna a la variable bgImage
- * className -> Clases adicionales para section
- * children  -> Hereda elementos hijos del componente
+ * @component
+ * * Section
+ * Este componente define partes del portafolio cada 100vh
+ * 
+ * @param {string} id        — Indica el id para el section, usado por la TabBar
+ * @param {string} bg        — Si existe, se asigna a la variable bgImage
+ * @param {string} className — Clases adicionales
+ * @param {object} children  — Hereda elementos hijos del componente
  */
 export function Section(props) {
     const bgImage = {backgroundImage: "url(" + props.bg + ")"}
@@ -23,18 +23,22 @@ export function Section(props) {
     )
 }
 /**
- * * ImageZoomIn props
- * id        -> Establece un id para el elemento
- * src       -> Ruta de imagen a mostrar
- * alt       -> Texto alternativo para imagen
- * className -> Clases adicionales para contenedor de imagen
- * onClick   -> Función onClick
- * onLoad    -> Función onLoad
+ * @component
+ * * ImageZoomIn
+ * Este componente es un contenedor con interacción hover
+ * 
+ * @param {string}   id        — Establece un id para contenedor padre de imagen
+ * @param {string}   src       — Establece ruta de imagen a mostrar
+ * @param {string}   alt       — Establece un texto alternativo para imagen
+ * @param {string}   className — Establece clases adicionales para contenedor de imagen
+ * @param {function} onClick   — Establece función onClick
+ * @param {function} onLoad    — Establece función onLoad
  */
 export function ImageZoomIn(props) {
     function basic() {
         return (
-            <img className={"w-full h-full object-cover transition-all ease-in-out hover:scale-110" + (props.className ? " " + props.className : "")}
+            <img 
+                className={"w-full h-full object-cover transition-all ease-in-out hover:scale-110" + (props.className ? " " + props.className : "")}
                 src={props.src}
                 onLoad={props.onLoad}
                 onClick={props.onClick}
@@ -42,6 +46,8 @@ export function ImageZoomIn(props) {
             />
         )
     }
+    // Si props.link existe, se evalúa si existe props.blank si es así,
+    // el enlace sera blank, sino el enlace sera un enlace simple
     if (props.link) {
         if (props.blank == "none") {
             return (
@@ -82,11 +88,14 @@ export function ImageZoomIn(props) {
     }
 }
 /**
- * * Input props
- * title       -> Encabezado de input
- * placeholder -> Placeholder en input
- * type        -> Tipo de input a devolver
- * className   -> Clases adicionales para contenedor
+ * @component
+ * * Input
+ * Este componente es un input de tipo variable
+ * 
+ * @param {string} title       — Establece el encabezado del input
+ * @param {string} placeholder — Establece el placeholder del input
+ * @param {string} type        — Establece el tipo de input
+ * @param {string} className   — Establece clases adicionales para contenedor
  */
 export function Input(props) {
     function textarea() {
@@ -101,7 +110,6 @@ export function Input(props) {
             />
         )
     }
-
     function input() {
         return (
             <input 
@@ -115,7 +123,6 @@ export function Input(props) {
             />
         )
     }
-
     return (
         <div className={"flex flex-col " + props.className}>
             <p>{props.title}</p>
@@ -124,16 +131,18 @@ export function Input(props) {
     )
 }
 /**
- * * Icon props
- * icon      -> Clase para icono 
- * size      -> Clase para tamaño de icono
- * className -> Clases adicionales para icono
- * style     -> Añade estilos en línea
- * onClick   -> Función onClick
- * link      -> Sí existe, se crea un enlace contenedor
+ * @component
+ * * Icon
+ * Este componente es un icono
+ * 
+ * @param {string}   icon      — Establece el icono
+ * @param {string}   size      — Establece el tamaño del icono
+ * @param {string}   link      — Sí existe, se crea un enlace contenedor
+ * @param {string}   style     — Establece estilos en línea
+ * @param {string}   className — Establece clases adicionales para icono
+ * @param {function} onClick   — Establece
  */
 export function Icon(props){
-    // Elemento básico
     function basic() {
         return (
             <i
@@ -143,9 +152,8 @@ export function Icon(props){
             />
         )
     }
-    // Verificamos si existe prop link
+    // Verifica si existe prop link, si existe comprueba si es necesario usar target
     if (props.link) {
-        // Sí existe, verificamos si es necesario usar target
         return (
             <div className="flex items-center">
                 <a 
@@ -167,9 +175,12 @@ export function Icon(props){
     }
 }
 /**
- * * PopUp props
- * children  -> Hereda elementos hijos del componente
- * message   -> Texto que contiene el popup
+ * @component
+ * * PopUp
+ * Este componente muestra un mensajes al hacer hover sobre el contenedor
+ * 
+ * @param {string} message  — Establece el texto que contiene el popup
+ * @param {object} children — Hereda elementos hijos del componente
  */
 export function PopUp(props) {
     return (
@@ -188,19 +199,26 @@ export function PopUp(props) {
     )
 }
 /**
+ * @component
  * * Frame
- * children  -> Hereda elementos hijos del componente
- * className -> Clases adicionales para icono
+ * Este componente es un contenedor de elementos pequeños
+ * 
+ * @param {object} children  — Hereda elementos hijos del componente
+ * @param {string} className — Establece clases adicionales para icono
+ * @param {string} padding   — Si existe se establece el padding introducida, sino se establece el valor por defecto
+ * @param {string} width     — Si existe se establece la anchura introducida, sino se establece el valor por defecto 
+ * @param {string} height    — Si existe se establece la altura introducida, sino se establece el valor por defecto
+ * @param {string} style     — Es comparado con cada clave del array styles, sino se establece o no se encuentran coincidencias se devuelve el valor por defecto
  */
 export function Frame(props) {
     function setPadding() {
-        return !props.padding ? "p-1 "   : props.padding + " "
+        return props.padding ? props.padding + " " : "p-1 " 
     }
     function setWidth() {
-        return !props.width   ? "w-fit " : props.width + " "
+        return props.width ? props.width + " " : "w-fit "
     }
     function setHeight() {
-        return !props.height  ? "h-fit " : props.height + " "
+        return props.height ? props.height + " " : "h-fit " 
     }
     function setStyle() {
         const styles = [
@@ -211,27 +229,42 @@ export function Frame(props) {
             {name: "green",  style: "bg-emerald-400 border border-emerald-500 dark:border-emerald-300 text-emerald-800 "}
         ]
 
-        if(!props.style){
-            return styles[0].style
-        } else {
+        if(props.style){
             let selected = styles[0].style
+
             for (let i = 0; i < styles.length; i++) {
-                if (props.style == styles[i].name) {selected = styles[i].style}
+                props.style == styles[i].name ? selected = styles[i].style : selected = styles[0].style
             }
+
             return selected
+        } else {
+            return styles[0].style
         }
     }
     return (
         <div className={
                 setWidth() + setHeight() + setPadding() + setStyle() +
-                "rounded-md " + (props.className ? " " + props.className : "")
+                "rounded-md" + (props.className ? " " + props.className : "")
             }
         >
             {props.children}
         </div>
     )
 }
-
+/**
+ * @component
+ * * FrameGroup
+ * Este componente es un contenedor de frame con icono y texto descriptivo
+ * 
+ * @param {string} icon           — Establece el icono
+ * @param {string} iconSize       — Establece el tamaño del icono
+ * @param {string} iconLink       — Sí existe, se crea un enlace contenedor
+ * @param {string} iconClassName  — Establece clases adicionales para icono
+ * @param {string} frameWidth     — Establece la anchura para frame
+ * @param {string} frameHeight    — Establece la altura para frame
+ * @param {string} frameClassName — Establece clases adicionales para frame
+ * @param {object} children       — Hereda elementos hijos del componente
+ */
 export function FrameGroup(props) {
     return (
         <div className="flex flex-row gap-3 items-center w-[calc(50%_-_0.5rem)]">
@@ -250,10 +283,12 @@ export function FrameGroup(props) {
     )
 }
 /**
+ * @component
  * * Collapse
+ * Este componente contiene elementos con visibilidad alternada
  * 
- * @param {string} from Tamaño colapsado
- * @param {string} to   Tamaño completo
+ * @param {string} from — Establece la altura mínima a mostrar
+ * @param {string} to   — Establece la altura máxima a mostrar
  */
 export function Collapse(props) {
     function setToggleCollapse(e) {
@@ -286,32 +321,46 @@ export function Collapse(props) {
     )
 }
 /**
- *  
+ * @component
+ * * SideBar
+ * Este componente es un contenedor que se inserta en los laterales del DOM
+ * para mostrar información o componentes de navegación
+ * 
+ * @param {string} width  — Si existe se establece la anchura introducida, sino se establece el valor por defecto
+ * @param {string} height — Si existe se establece la altura introducida, sino se establece el valor por defecto
  */
 export function SideBar(props) {
     function setWidth() {
-        return !props.width ? "w-1/3 "  : props.width + " "
+        return props.width ? props.width + " " : "w-1/3 "
     }
     function setHeight() {
-        return !props.height ? "h-[calc(100vh_-_2.5rem)] " : props.height + " "
+        return props.height ? props.height + " " : "h-[calc(100vh_-_2.5rem)] "
     }
     return (
         <nav 
-            className={setWidth() + setHeight() + "overflow-y-auto" + (props.className ? " " + props.className : "")}
+            className={
+                setWidth() + setHeight() + "overflow-y-auto" +
+                (props.className ? " " + props.className : "")
+            }
         >
             {props.children}
         </nav>
     )
 }
 /**
+ * @component
  * * List
+ * Este componente es una lista contenedora
+ * 
+ * @param {string} type   — Si existe se establece el tipo de lista introducida, sino se establece el valor por defecto
+ * @param {string} margin — Si existe se establece el margen introducida, sino se establece el valor por defecto
  */
 export function List(props) {
     function setType() {
-        return !props.type ? "" : props.type + " "
+        return props.type ? props.type + " " : ""
     }
     function setMargin() {
-        return !props.margin ? "mb-3 " : props.margin + " "
+        return props.margin ? props.margin + " " : "mb-3 "
     }
     return (
         <ul className={setType() + setMargin() + "ml-5" + (props.className ? " " + props.className : "")}>

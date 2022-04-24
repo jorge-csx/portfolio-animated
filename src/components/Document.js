@@ -2,28 +2,47 @@ import { useEffect, useRef, useState } from "react"
 import { Icon, Frame, SideBar, List } from "./Layout"
 import getCleanString from "../scripts/getCleanString"
 /**
+ * @component
  * * Document
- * id        -> Establece un id para el elemento
- * classname -> Clases adicionales para Document
- * children  -> Hereda elementos hijos del componente
+ * Este componente es un componente con formato para documentar proyectos
+ * 
+ * @param {string} id — Establece un id para el elemento
+ * @param {string} className — Clases adicionales
+ * @param {object} children — Hereda elementos hijos del componente
  */
 export default function Document(props) {
+    // Almacena referencia de la documentación
     const doc = useRef()
+    // Establece documentación actual
     const [actualDoc, setActualDoc] = useState()
+    // Almacena las id's de encabezados a los cuáles no se les asignará estilos
     const ignoreHl = ["diseno-ui", "seo", "funciones-ux", "administracion"]
 
+    // Cada vez que el componente es cargado se define el documento actual
     useEffect(() => {
         setActualDoc(doc.current)
     })
 
+    /**
+     * @function setHeadlineFormat
+     * Esta función da estilos a todos los encabezados h2, h3 y h4 que se encuentren en el documento
+     * 
+     * @param {object} hl — Headline al cual se le aplican estilos 
+     */
     function setHeadlineFormat(hl) {
+        // A partir del textContent del encabezado se formatea la id con getCleanString()
         let id = getCleanString(hl.textContent)
-        let mt = null
+        let mt = ""
 
+        // Se asigna id formateado
+        hl.setAttribute("id", id)
+
+        // Se aplican estilos según tagName
         switch (hl.tagName) {
             case "H2": mt = "mt-10"
                 break
             case "H3":
+                // Se filtra ignoreHl
                 ignoreHl.includes(hl.getAttribute("id"))
                     ? mt = "mt-0"
                     : mt = "mt-6"
@@ -32,28 +51,42 @@ export default function Document(props) {
                 break
         }
 
-        hl.setAttribute("id", id)
+        // Se asignan estilos a encabezados
         hl.classList.add(mt, "scroll-mt-4")
     }
-
-    const setSideBar = () => {
+    /**
+     * @function
+     * Esta función recupera los encabezados, los formatea y además, a partir de ellos,
+     * asigna los items con enlaces para la SideBar
+     * 
+     * @param {object} actualDoc — Documento actual del que se extraerán encabezados
+     */
+    const setItemsSideBar = () => {
         if (actualDoc) {
+            // Almacena las secciones del documento
             const sections = actualDoc.querySelectorAll("article section")
+            // Almacena encabezados por sección
             const sectionsHeadlines = []
+            // Almacena los encabezados
             const nodes = []
+            // Almacena los enzabezados formateados como enlaces para la SideBar
             const items = []
 
+            // Recupera los encabezados por sección y los almacena en sectionsHeadlines
             sections.forEach(section => {
                 sectionsHeadlines.push(section.querySelectorAll("h2, h3, h4")) 
             })
 
+            // Extrae todos los encabezados de sectionsHeadlines y los almacena en nodes 
             sectionsHeadlines.map((headlines) => {
                 headlines.forEach(headline => {nodes.push(headline)})
-            })  
-
+            })
+            
+            // Da formato a todos los encabezados en node
             for (let i = 0; i < nodes.length; i++) {
                 const hoverStyle = " hover:text-cyan-400 hover:dark:text-cyan-400"
                 
+                // Da formato a todos los encabezados
                 setHeadlineFormat(nodes[i])
 
                 if (nodes[i].tagName == "H2") {
@@ -98,7 +131,6 @@ export default function Document(props) {
             )
         }
     }
-
     return (
         <div
             id={"doc-project"}
@@ -107,16 +139,22 @@ export default function Document(props) {
         >
             <SideBar 
                 height="h-[calc(100vh_-_9.188rem)]"
-                className="sticky top-0 p-4 mt-10">
-                {setSideBar()}
+                className="sticky top-0 p-4 mt-10"
+            >
+                {setItemsSideBar()}
             </SideBar>
-            { props.children }
+            {props.children}
         </div>
     )
 }
 /**
+ * @component
  * * Anchor
- * link -> Recibe id de elemento referenciado
+ * Este componente es una referencia de un elemento hacía sí mismo, permite centrar la lectura en este al hacer clic sobre el,
+ * así como para modificar la dirección del sitio y que al visitarla nos enfoque en este elemento
+ * 
+ * @param {string} link — Id del elemento a referenciar
+ * @param {object} children — Hereda elementos hijos del componente
  */
 export function Anchor(props) {
     return (

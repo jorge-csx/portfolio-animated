@@ -1,11 +1,16 @@
 import { useEffect, useRef, useState } from "react";
-// Contemplar cambiar de nombre a useObserver
+/**
+ * @hook
+ * * useObserver
+ * Este hook trabaja con un observer para dar estilos por sección a la TabBar
+ * 
+ * @param {} options — Establece las opciones para el comportamiento del observador
+ */
 export default function useObserver(options) {
     const [elements, setElements]  = useState([]) // Elementos observados
     const [entries, setEntries] = useState([])    // Entradas
 
     const observer = useRef(new IntersectionObserver(function(observedEntries) {
-        // console.log(observedEntries);
         setEntries(observedEntries)
     }, options))
 

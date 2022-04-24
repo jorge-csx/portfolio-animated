@@ -1,7 +1,11 @@
 import { Section, Icon } from "../components/Layout";
 import { Label } from "../components/Labels";
 import { Title, Subtitle, Highlight, Description } from "../components/Text"
-
+/**
+ * @component
+ * * AboutMe
+ * Este componente es la vista "sobre mí" 
+ */
 export default function AboutMe(){
     return (
         <Section 

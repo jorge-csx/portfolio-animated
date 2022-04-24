@@ -3,7 +3,11 @@ import { Section, Input } from "../components/Layout";
 import { ExpandableLabel } from "../components/Labels"
 import { Display } from "../components/Text"
 import copyToClipBoard from "../scripts/copyToClipBoard";
-
+/**
+ * @component
+ * * Contact
+ * Este componente es la vista contacto
+ */
 export default function Contact(){
     return (
         <Section 

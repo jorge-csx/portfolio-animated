@@ -1,9 +1,14 @@
 import sectionsJson from '../json/Sections';
 import { Icon } from './Layout';
 import Theme from './Theme';
-
+/**
+ * @component
+ * * TabBar
+ * Este componente es una barra de navegación por secciones fijada al final del vh,
+ * además de Theme y un enlace al repositorio de este portafolio 
+ */
 export default function TabBar(){
-    function indicators() {
+    function setIndicators() {
         const indicators = []
         indicators.push(
             sectionsJson.map((indicator, index) => (
@@ -30,14 +35,12 @@ export default function TabBar(){
                 </li>
             ))
         )
-
         return (
             <ul className="w-full flex items-center gap-4 justify-between">
-                { indicators }
+                {indicators}
             </ul>
         )
     }
-    
     return (
         <nav
             id="navbar"
@@ -49,7 +52,7 @@ export default function TabBar(){
                 md:flex
             "
         >
-            { indicators() }
+            {setIndicators()}
             <Theme/>
             <Icon
                 icon="bx bxl-github"

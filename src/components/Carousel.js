@@ -1,58 +1,92 @@
 import { Display, Description } from "./Text"
 import { ImageZoomIn, Icon, PopUp, Frame } from "./Layout"
-import React, { Component, useState } from "react"
+import React, { useState } from "react"
 import Button from "./Button"
 import ProjectSerestech from "../pages/ProjectSerestech";
 import ProjectAlternative from "../pages/ProjectAlternative";
 import toggleClasses from "../scripts/toggleClasses"
-
+/**
+ * @component
+ * * Carousel
+ * Este componente es un carrusel para proyectos, muestra contenido según index actual
+ * 
+ * @param {object} images — Array con path de imagenes de portada
+ * @param {object} json   — Json que contiene la informacion de los proyectos
+ * 
+ * Basado en https://youtu.be/EWO0WIATQ1g?list=PLPK4KKWhOzZu0CGiBs72O-yNqIu5lmetv
+ */
 export default function Carousel(props) {
+    // Almacena el index del carrusel
     const [selectedIndex, setSelectedIndex] = useState(0)
+    // Establece la imagen seleccionada según index
     const [selectedImage, setSelectedImage] = useState(props.images[0])
+    // Establece información de proyecto según index
     const [selectedJson, setSelectedJson]   = useState(props.json[0])
+    // Almacena el valor del index con formato
     const selectedIndexPosition = (selectedIndex + 1) + " de " + props.images.length
+    // Establece si el proyecto se encuentra abierto (1) o cerrado (0), se usa en toggleViewProject()
     const [projectState, setProjectState] = useState(0)
-
+    // Almacena los componentes importados, los cuales almacenan documentación
     const pagesComponents = {
         serestech: ProjectSerestech,
         alternative: ProjectAlternative
     }
-    const [pageComponent, setPageComponent] = useState(
+    // Establece que componente mostrar según index
+    const [actualPage, setActualPage] = useState(
         React.createElement(pagesComponents[props.json[0].page])
     )
-
-    const selectNewImage = (index, images, json, next = true) => {
+    /**
+     * @function selectNewIndex
+     * Esta función gestiona el contenido del componente según index
+     * 
+     * @param {number} index — Index
+     * @param {object} images — Imagen a mostrar según index
+     * @param {object} json — Información a mostrar según index
+     * @param {boolean} next — Indica si carrusel avanza o retrocede 
+     */
+    const selectNewIndex = (index, images, json, next = true) => {
         setTimeout(() => {
             // Si next es true se almacena la primera condición, sino la siguiente...
             const condition = next
                             ? index < images.length - 1
                             : index > 0
-            // Si next es true se evalúa ejecuta la primera instrucción, sino
-            // se ejecuta la siguiente instrucción
+
+            // Si next es true se evalúa ejecuta la primera instrucción,
+            // sino se ejecuta la siguiente instrucción
             const nextIndex = next
                             ? (condition ? index + 1 : 0)
                             : condition ? index - 1 : images.length - 1
+
+            // Cambiar imagen, index, json y componente según index
             setSelectedImage(images[nextIndex])
             setSelectedIndex(nextIndex)
             setSelectedJson(json[nextIndex])
-            setPageComponent(React.createElement(pagesComponents[json[nextIndex].page]))
+            setActualPage(React.createElement(pagesComponents[json[nextIndex].page]))
         }, 100);
     }
-
+    /**
+     * @function previous
+     * Esta función retrocede el carrusel
+     */
     const previous = () => {
-        selectNewImage(selectedIndex, props.images, props.json, false)
-    }
-
-    const next = () => {
-        selectNewImage(selectedIndex, props.images, props.json)
+        selectNewIndex(selectedIndex, props.images, props.json, false)
     }
     /**
-     * * actionsBar
-     * Contenedor con resumen de proyecto;
-     * lenguajes, enlaces y botones para avanzar y retroceder
+     * @function next
+     * Esta función avanza el carrusel
+     */
+    const next = () => {
+        selectNewIndex(selectedIndex, props.images, props.json)
+    }
+    /**
+     * @subcomponent
+     * Este subcomponente establece un contenedor que muestra lenguajes, enlaces y botones
+     * referentes al proyecto actual, ademas de botones para controlar la visualización de este
+     * 
+     * @param {object} selectedJson — Establece la información de los proyectos
      */
     const actionsBar = () => {
-        // Iconos de lenguajes utilizados con popup
+        // Iconos con popup de lenguajes utilizados
         const languages = () => {
             return (
                 <div className="flex gap-2 pl-4 border-l-2 border-cyan-400">
@@ -63,7 +97,12 @@ export default function Carousel(props) {
                         selectedJson.langs.map((lang, index) => {
                             if (lang.title == "Sass") {
                                 return (
-                                    <Frame key={index} className="flex items-center overflow-hidden" width="w-[2.125rem]" height="h-[2.125rem]">
+                                    <Frame 
+                                        key={index}
+                                        className="flex items-center overflow-hidden"
+                                        width="w-[2.125rem]"
+                                        height="h-[2.125rem]"
+                                    >
                                         <PopUp message={lang.title}>
                                             <Icon
                                                 icon={lang.icon}
@@ -128,7 +167,7 @@ export default function Carousel(props) {
                         <Button
                             text="b-to-g"
                             padding="equal"
-                            onClick={ previous }
+                            onClick={previous}
                         >
                             <Icon
                                 icon="bx bx-chevron-left"
@@ -136,12 +175,12 @@ export default function Carousel(props) {
                             />
                         </Button>
                         <p className="m-0 w-14 text-center">
-                            { selectedIndexPosition }
+                            {selectedIndexPosition}
                         </p>
                         <Button
                             text="b-to-g"
                             padding="equal"
-                            onClick={ next }
+                            onClick={next}
                         >
                             <Icon
                                 icon="bx bx-chevron-right"
@@ -152,7 +191,6 @@ export default function Carousel(props) {
                 )
             } 
         }
-
         return (
             <div
                 id="actions-bar" 
@@ -167,7 +205,7 @@ export default function Carousel(props) {
                     id="button-view"
                     text="b-to-w"
                     className="hidden"
-                    onClick={() => viewProject()}
+                    onClick={() => toggleViewProject()}
                 >
                     Cerrar
                 </Button>
@@ -175,13 +213,11 @@ export default function Carousel(props) {
         )
     }
     /**
-     * * cover
-     * Contenedor de imagen y contenido de proyecto,
-     * mensaje cta y botón para cerrar
+     * @subcomponent
+     * Este subcomponente es un contenedor para portada, documentación y caption
      */
     const cover = () => {
-        const id = "project-" + selectedJson.alt
-        // Mensaje CTA para hacer clic sobre la imagen y ver contenido de proyecto
+        // Caption para portada
         const caption = () => {
             return (
                 <p 
@@ -195,32 +231,31 @@ export default function Carousel(props) {
                 </p>
             )
         }
-
         return (
             <div 
                 id="cover"
                 className="w-full h-full overflow-hidden relative group scroll-smooth"
             >
                 <ImageZoomIn
-                    id={id}
+                    id={"project-" + selectedJson.alt}
                     src={selectedImage}
                     link="#projects"
                     blank="none"
                     className="cursor-pointer"
                     containerClassName="duration-300 border dark:border-slate-600"
                     alt={"portada-" + selectedJson.alt}
-                    onClick={() => viewProject()}
+                    onClick={() => toggleViewProject()}
                 />
                 {caption()}
-                {pageComponent}
+                {actualPage}
             </div>
         )
     }
     /**
-     * * viewProject()
-     * Función para ejecutar animaciones de transición al hacer clic sobre la imagen contenida en cover
+     * @function toggleViewProject
+     * Esta función ejecuta animaciones de transición al hacer clic sobre la imagen de portada
      */
-    function viewProject() {
+    function toggleViewProject() {
         const section           = document.querySelector("#projects"),
               carousel          = section.querySelector("div"),
               title             = carousel.querySelector("h1"),
@@ -233,6 +268,7 @@ export default function Carousel(props) {
               navbar            = document.querySelector("#navbar"),
               doc               = document.querySelector("#doc-project")
 
+        // Si proyecto esta cerrado, pasa a abierto...
         if (projectState == 0) {
             toggleClasses(section, "", ["px-24", "py-14"])
             toggleClasses(title, ["p-6", "pb-0"])
@@ -249,6 +285,8 @@ export default function Carousel(props) {
             toggleClasses(document.querySelector("#contact"), ["hidden"])
 
             setProjectState(1)
+
+        // Si proyecto esta abierto, pasa a cerrado...
         } else {
             toggleClasses(section, ["px-24", "py-14"])
             toggleClasses(title, "", ["p-6", "pb-0"])
@@ -267,7 +305,6 @@ export default function Carousel(props) {
             setProjectState(0)
         }
     }
-
     return (
         <div className="flex flex-col h-full w-full relative">
             <Display>

@@ -3,7 +3,11 @@ import { ExpandableLabel } from "../components/Labels";
 import { Display, Highlight } from "../components/Text";
 import { Section } from "../components/Layout";
 import copyToClipBoard from "../scripts/copyToClipBoard";
-
+/**
+ * @component 
+ * * Home
+ * Este componente es la vista de inicio
+ */
 export default function Home(){
     return (
         <Section 

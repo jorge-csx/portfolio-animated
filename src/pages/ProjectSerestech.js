@@ -4,9 +4,12 @@ import { Frame, FrameGroup, Icon, Collapse, SideBar, ImageZoomIn, List } from ".
 import { useEffect, useRef, useState } from "react"
 import Button from "../components/Button"
 import toggleClasses from "../scripts/toggleClasses"
-
+/**
+ * @component
+ * * ProjectSerestech
+ * Este componente contiene información sobre el proyecto SeresTech
+ */
 export default function ProjectSerestech() {
-
     function Introduction() {
         return (
             <section>
