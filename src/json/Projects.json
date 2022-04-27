@@ -4,17 +4,17 @@
         "alt"   : "serestech-catalogo-panel",
         "cover" : "images/projects/serestech-catalog/cover.webp",
         "langs" : [
+            { 
+                "title" : "Laravel",
+                "icon" : "fa-brands fa-laravel",
+                "color" : "#F9322C"
+            },
             {
                 "title" : "Sass",
                 "icon" : "fa-brands fa-sass",
                 "color" : "#CF649A"
             }
             ,
-            { 
-                "title" : "Laravel",
-                "icon" : "fa-brands fa-laravel",
-                "color" : "#F9322C"
-            },
             { 
                 "title" : "Jquery",
                 "icon" : "bx bxl-jquery",

@@ -5,6 +5,7 @@ import Button from "./Button"
 import ProjectSerestech from "../pages/ProjectSerestech";
 import ProjectAlternative from "../pages/ProjectAlternative";
 import toggleClasses from "../scripts/toggleClasses"
+import {SlideMenu, toggleSlideMenu} from "./Menus";
 /**
  * @component
  * * Carousel
@@ -88,70 +89,80 @@ export default function Carousel(props) {
     const actionsBar = () => {
         // Iconos con popup de lenguajes utilizados
         const languages = () => {
+            const setItems = () => {
+                return (
+                    selectedJson.langs.map((lang, index) => {
+                        if (lang.title == "Sass") {
+                            return (
+                                <Frame 
+                                    key={index}
+                                    className="flex items-center"
+                                    width="w-[2.125rem]"
+                                    height="h-[2.125rem]"
+                                >
+                                    <PopUp message={lang.title}>
+                                        <Icon
+                                            icon={lang.icon}
+                                            size="text-2xl"
+                                            style={{color : lang.color}}
+                                        />
+                                    </PopUp>
+                                </Frame>
+                            )
+                        } else {
+                            return (
+                                <Frame key={index}>
+                                    <PopUp message={lang.title}>
+                                        <Icon
+                                            icon={lang.icon}
+                                            size="text-2xl"
+                                            style={{color : lang.color}}
+                                        />
+                                    </PopUp>
+                                </Frame>
+                            )
+                        }
+                    })
+                )
+            }
             return (
-                <div className="flex gap-2 pl-4 border-l-2 border-cyan-400">
-                    <Description margin="m-0">
-                        Creado con
+                <div className="flex flex-col md:flex-row gap-2 pl-4 border-l-2 border-cyan-400">
+                    <Description margin="m-0" className="hidden md:flex">
+                        Herramientas
                     </Description>
-                    {  
-                        selectedJson.langs.map((lang, index) => {
-                            if (lang.title == "Sass") {
-                                return (
-                                    <Frame 
-                                        key={index}
-                                        className="flex items-center overflow-hidden"
-                                        width="w-[2.125rem]"
-                                        height="h-[2.125rem]"
-                                    >
-                                        <PopUp message={lang.title}>
-                                            <Icon
-                                                icon={lang.icon}
-                                                size="text-2xl"
-                                                style={{color : lang.color}}
-                                            />
-                                        </PopUp>
-                                    </Frame>
-                                )
-                            } else {
-                                return (
-                                    <Frame key={index}>
-                                        <PopUp message={lang.title}>
-                                            <Icon
-                                                icon={lang.icon}
-                                                size="text-2xl"
-                                                style={{color : lang.color}}
-                                            />
-                                        </PopUp>
-                                    </Frame>
-                                )
-                            }
-                        })
-                    }
+                    <div className="flex gap-2">
+                        {setItems()}
+                    </div>
                 </div>
             )
         }
         // Iconos con enlaces hacia web y repositorio
         const links = () => {
+            const setItems = () => {
+                return (
+                    selectedJson.links.map((link, index) => (
+                        <Frame key={index}>
+                            <PopUp message={link.title}>
+                                <Icon
+                                    key={index}
+                                    icon={link.icon}
+                                    size="text-2xl"
+                                    className={"cursor-pointer " + link.className}
+                                    link={link.url}
+                                />
+                            </PopUp>
+                        </Frame>
+                    ))
+                )
+            } 
             return (
-                <div className="flex gap-2">
-                    <Description margin="m-0">
-                        Visitar web y repositorio
+                <div className="flex flex-col md:flex-row gap-2">
+                    <Description margin="m-0" className="hidden md:flex">
+                        Links
                     </Description>
-                    {
-                        selectedJson.links.map((link, index) => (
-                            <Frame key={index}>
-                                <PopUp message={link.title}>
-                                    <Icon
-                                        key={index}
-                                        icon={link.icon}
-                                        size="text-2xl"
-                                        className={"cursor-pointer " + link.className}
-                                        link={link.url}
-                                    />
-                                </PopUp>
-                            </Frame>
-                        ))
-                    }
+                    <div className="flex flex-row gap-2">
+                        {setItems()}
+                    </div>
                 </div>
             )
         }
@@ -174,7 +185,7 @@ export default function Carousel(props) {
                                 size="text-2xl"
                             />
                         </Button>
-                        <p className="m-0 w-14 text-center">
+                        <p className="m-0 w-14 text-center hidden md:block">
                             {selectedIndexPosition}
                         </p>
                         <Button
@@ -194,9 +205,9 @@ export default function Carousel(props) {
         return (
             <div
                 id="actions-bar" 
-                className="flex flex-row items-center justify-between mb-3"
+                className="flex flex-row items-end md:items-center justify-between mb-3 gap-4"
             >
-                <div className="w-full flex flex-row gap-4 items-center">
+                <div className="w-full flex flex-row gap-6 md:gap-4 items-end md:items-center">
                     {languages()}
                     {links()}
                 </div>
@@ -205,9 +216,23 @@ export default function Carousel(props) {
                     id="button-view"
                     text="b-to-w"
                     className="hidden"
-                    onClick={() => toggleViewProject()}
+                    onClick={() => {toggleViewProject(); toggleSlideMenu("slide-menu-doc", "hide")}}
                 >
                     Cerrar
+                </Button>
+                <Button
+                    id="btn-slide-menu-doc"
+                    text="b-to-w"
+                    padding="equal"
+                    rounded="rounded-md"
+                    className="hidden"
+                    breakpoint="lg"
+                    onClick={() => toggleSlideMenu("slide-menu-doc")}
+                >
+                    <Icon
+                        icon="bx bx-menu"
+                        size="text-2xl"
+                    />
                 </Button>
             </div>
         )
@@ -234,15 +259,15 @@ export default function Carousel(props) {
         return (
             <div 
                 id="cover"
-                className="w-full h-full overflow-hidden relative group scroll-smooth"
+                className="w-full h-full overflow-hidden group scroll-smooth relative"
             >
                 <ImageZoomIn
-                    id={"project-" + selectedJson.alt}
+                    id={"project-cover"}
                     src={selectedImage}
                     link="#projects"
                     blank="none"
                     className="cursor-pointer"
-                    containerClassName="duration-300 border dark:border-slate-600"
+                    containerClassName="duration-300"
                     alt={"portada-" + selectedJson.alt}
                     onClick={() => toggleViewProject()}
                 />
@@ -262,22 +287,25 @@ export default function Carousel(props) {
               actionsBar        = carousel.querySelector("#actions-bar"),
               actionsBarButtons = actionsBar.querySelector("#buttons"),
               cover             = carousel.querySelector("#cover"),
-              imageContainer    = cover.firstChild,
+              SlMenu            = cover.querySelector("#slide-menu-doc"),
+              imageContainer    = cover.querySelector("#project-cover"),
               caption           = cover.querySelector("p"),
               buttonView        = actionsBar.querySelector("#button-view"),
+              buttonSlideMenu   = actionsBar.querySelector("#btn-slide-menu-doc"),
               navbar            = document.querySelector("#navbar"),
               doc               = document.querySelector("#doc-project")
 
         // Si proyecto esta cerrado, pasa a abierto...
         if (projectState == 0) {
-            toggleClasses(section, "", ["px-24", "py-14"])
+            toggleClasses(section, ["h-screen"], ["px-6", "md:px-24", "py-6", "md:py-14", "h-[calc(100vh_-_4.625rem)]"])
             toggleClasses(title, ["p-6", "pb-0"])
             toggleClasses(actionsBar, ["p-6", "pb-5", "pt-0", "border-b", "dark:border-slate-600"], ["mb-3"])
             toggleClasses(actionsBarButtons, ["hidden"], ["flex"])
-            toggleClasses(imageContainer, ["pointer-events-none", "h-2/3", "border-b", "dark:border-b-slate-600"], ["h-full", "rounded-md", "border", "cursor-pointer"])
+            toggleClasses(imageContainer, ["pointer-events-none", "h-2/3", "border-b", "dark:border-b-slate-600"], ["h-full", "rounded-md", "cursor-pointer"])
             toggleClasses(caption, ["hidden"])
             toggleClasses(buttonView, "", ["hidden"])
-            toggleClasses(navbar, ["-bottom-14"], ["bottom-4"])
+            toggleClasses(buttonSlideMenu, "", ["hidden"])
+            toggleClasses(navbar, ["hidden", "md:-bottom-14"], ["md:bottom-4"])
             toggleClasses(cover, ["overflow-y-auto"], ["overflow-hidden"])
             toggleClasses(doc, "", ["hidden"])
 
@@ -288,14 +316,15 @@ export default function Carousel(props) {
 
         // Si proyecto esta abierto, pasa a cerrado...
         } else {
-            toggleClasses(section, ["px-24", "py-14"])
+            toggleClasses(section, ["h-[calc(100vh_-_4.625rem)]", "px-6", "md:px-24", "py-6", "md:py-14"], ["h-screen"])
             toggleClasses(title, "", ["p-6", "pb-0"])
             toggleClasses(actionsBar, ["mb-3"], ["p-6", "pb-5", "pt-0", "border-b", "dark:border-slate-600"])
             toggleClasses(actionsBarButtons, ["flex"], ["hidden"])
-            toggleClasses(imageContainer, ["h-full", "rounded-md", "border", "cursor-pointer"], ["pointer-events-none", "h-2/3", "border-b", "dark:border-b-slate-600"])
+            toggleClasses(imageContainer, ["h-full", "rounded-md", "cursor-pointer"], ["pointer-events-none", "h-2/3", "border-b", "dark:border-b-slate-600"])
             toggleClasses(caption, "", ["hidden"])
             toggleClasses(buttonView, ["hidden"])
-            toggleClasses(navbar, ["bottom-4"], ["-bottom-14"])
+            toggleClasses(buttonSlideMenu, ["hidden"])
+            toggleClasses(navbar, ["md:bottom-4"], ["md:-bottom-14", "hidden"])
             toggleClasses(cover, ["overflow-hidden"], ["overflow-y-auto"])
             toggleClasses(doc, ["hidden"])
 
@@ -305,8 +334,27 @@ export default function Carousel(props) {
             setProjectState(0)
         }
     }
+    /**
+     * @function setSliderMenuContent
+     * Esta función recupera información del SideBar en el documento
+     * para insertarlo en el SliderMenu
+     */
+    function setSliderMenuContent() {
+       const sidebar = document.querySelector("#sidebar-doc")
+       let content = ""
+    
+       if (sidebar) {content = sidebar.innerHTML}
+    
+       return {__html: content}
+    }
     return (
         <div className="flex flex-col h-full w-full relative">
+            <SlideMenu 
+                id="doc"
+                height="h-screen"
+                innerHTML={setSliderMenuContent()}
+                breakpoint="lg"
+            />
             <Display>
                 {selectedJson.title}
             </Display>

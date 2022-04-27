@@ -14,7 +14,7 @@ export default function Projects(){
         <Section 
             id="projects"
             className="
-                overflow-hidden transition-all duration-300 ease-in-out
+                h-[calc(100vh_-_4.625rem)] transition-all duration-300 ease-in-out
                 bg-gray-50/50
                 dark:bg-gray-900/30
             "

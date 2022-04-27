@@ -11,13 +11,17 @@ const themes = [
  * @component
  * * Theme
  * Este componente es un icono que contiene un elemento con los diferentes temas a elegir
+ * 
+ * @param {string} id — Establece un sufijo para el id 
  */
-export default function Theme(){
+export default function Theme(props){
     // Almacena el tema activo en localStorage y los temas disponibles
     const [appTheme, setActiveTheme] = useState({
         activeTheme: localStorage.theme,
         themes: themes,
     })
+    // Almacena el id para el contenedor de opciones de tema
+    const id = "options-" + (props.id ? props.id : "")
 
     // Ejecuta la función checkTheme al cargar el componente para comprobar el tema actual
     useEffect( ()=> { checkTheme() })
@@ -52,7 +56,7 @@ export default function Theme(){
      * @param {object} theme — Establece el valor del tema a aplicar
      * @param {number} index — Establece la posición del tema seleccionado en el array themes
      */
-     function setStorage(theme, index) {
+    function setStorage(theme, index) {
         // Asigna la posición en que se encuentra el tema seleccionado
         toggleActiveTheme(index)
         // Si el tema es diferente a undefined, lo asigna al item theme, sino elimina el item theme
@@ -67,10 +71,11 @@ export default function Theme(){
     function setThemes() {
         return (
             <ul 
-                id="options"
+                id={id}
                 className="
-                    border absolute bottom-full mb-2 hidden flex-row gap-3 p-2 rounded-full bg-white
+                    hidden border absolute right-full -top-[1.063rem] mb-2 mr-8 flex-col rounded-md gap-3 p-2 bg-white
                     dark:border-slate-600 dark:bg-slate-800
+                    md:right-auto md:top-auto md:bottom-full md:mr-0 md:flex-row md:rounded-full
                 "
             >
                 {
@@ -114,7 +119,7 @@ export default function Theme(){
      * Esta función muestra y oculta el subcomponente themes
      */
     function toggleViewThemes() {
-        const options = document.querySelector("#options")
+        const options = document.querySelector("#" + id)
 
         function hide() {
             toggleClasses(options, ["hidden"], ["flex"])

@@ -15,7 +15,10 @@ export function Section(props) {
     return (
         <section
             id={props.id}
-            className={"w-full h-screen px-24 py-14 flex items-center justify-center gap-8" + (props.className ? " " + props.className : "")}
+            className={
+                "w-full md:h-screen px-6 md:px-24 py-6 md:py-14 flex flex-col md:flex-row items-center justify-center gap-8 scroll-mt-[4.625rem] md:scroll-mt-0" +
+                (props.className ? " " + props.className : "")
+            }
             style={props.bg ? bgImage : {}}
         >
             {props.children}
@@ -27,18 +30,24 @@ export function Section(props) {
  * * ImageZoomIn
  * Este componente es un contenedor con interacción hover
  * 
- * @param {string}   id        — Establece un id para contenedor padre de imagen
- * @param {string}   src       — Establece ruta de imagen a mostrar
- * @param {string}   alt       — Establece un texto alternativo para imagen
- * @param {string}   className — Establece clases adicionales para contenedor de imagen
- * @param {function} onClick   — Establece función onClick
- * @param {function} onLoad    — Establece función onLoad
+ * @param {string}   id                 — Establece un id para contenedor padre de imagen
+ * @param {string}   src                — Establece ruta de imagen a mostrar
+ * @param {string}   alt                — Establece un texto alternativo para imagen
+ * @param {string}   className          — Establece clases adicionales para imagen
+ * @param {string}   containerClassName — Establece clases adicionales para contenedor de imagen
+ * @param {string}   link               — Si existe se crea un enlace contenedor
+ * @param {string}   blank              — Si es igual a "none", los atributos target y rel no son insertados
+ * @param {function} onClick            — Establece función onClick
+ * @param {function} onLoad             — Establece función onLoad
  */
 export function ImageZoomIn(props) {
     function basic() {
         return (
             <img 
-                className={"w-full h-full object-cover transition-all ease-in-out hover:scale-110" + (props.className ? " " + props.className : "")}
+                className={
+                    "w-full h-full object-cover transition-all ease-in-out hover:scale-110" +
+                    (props.className ? " " + props.className : "")
+                }
                 src={props.src}
                 onLoad={props.onLoad}
                 onClick={props.onClick}
@@ -46,16 +55,17 @@ export function ImageZoomIn(props) {
             />
         )
     }
-    // Si props.link existe, se evalúa si existe props.blank si es así,
+    // Si props.link existe, se evalúa si existe props.blank si es asi,
     // el enlace sera blank, sino el enlace sera un enlace simple
+    const styles = "h-full rounded-md overflow-hidden transition-all ease-in-out"
     if (props.link) {
         if (props.blank == "none") {
             return (
                 <div 
                     id={props.id} 
-                    className={"h-full rounded-md overflow-hidden transition-all ease-in-out" + (props.containerClassName ? " " + props.containerClassName : "")}
+                    className={styles + (props.containerClassName ? " " + props.containerClassName : "")}
                 >
-                    <a href={props.link} >
+                    <a href={props.link}>
                         {basic()}
                     </a>
                 </div>
@@ -64,7 +74,7 @@ export function ImageZoomIn(props) {
             return (
                 <div 
                     id={props.id} 
-                    className={"h-full rounded-md overflow-hidden transition-all ease-in-out" + (props.containerClassName ? " " + props.containerClassName : "")}
+                    className={styles + (props.containerClassName ? " " + props.containerClassName : "")}
                 >
                     <a 
                         href={props.link} 
@@ -80,7 +90,7 @@ export function ImageZoomIn(props) {
         return (
             <div 
                 id={props.id} 
-                className={"h-full rounded-md overflow-hidden transition-all ease-in-out" + (props.containerClassName ? " " + props.containerClassName : "")}
+                className={styles + (props.containerClassName ? " " + props.containerClassName : "")}
             >
                 {basic()}
             </div>            
@@ -93,7 +103,9 @@ export function ImageZoomIn(props) {
  * Este componente es un input de tipo variable
  * 
  * @param {string} title       — Establece el encabezado del input
- * @param {string} placeholder — Establece el placeholder del input
+ * @param {string} name        — Establece un atributo name
+ * @param {string} content     — Establece contenido predefinido
+ * @param {string} placeholder — Establece el placeholder
  * @param {string} type        — Establece el tipo de input
  * @param {string} className   — Establece clases adicionales para contenedor
  */
@@ -102,11 +114,15 @@ export function Input(props) {
         return (
             <textarea 
                 className="
-                    h-full min-h-[2.5rem] border rounded-md p-2 mb-2 align-text-top text-slate-700 resize-none outline-none ring-transparent ring-offset-2 ring-offset-white transition-all in-out
+                    h-full min-h-[2.5rem] border rounded-md p-2 mb-4 align-text-top text-slate-700 resize-none outline-none ring-transparent ring-offset-2 ring-offset-white transition-all in-out
                     focus:ring-cyan-400 focus:ring-2
-                    dark:ring-offset-slate-800 dark:border-0
-                    placeholder:font-light"
+                    dark:ring-offset-slate-800 dark:bg-slate-700/25 dark:border-slate-600 dark:text-white dark:font-light
+                    placeholder:font-light placeholder:text-slate-500
+                "
                 placeholder={props.placeholder}
+                name={props.name}
+                defaultValue={props.content}
+                spellCheck="false"
             />
         )
     }
@@ -115,11 +131,15 @@ export function Input(props) {
             <input 
                 type={props.type}
                 className="
-                    h-full min-h-[2.5rem] border rounded-md p-2 mb-2 align-text-top text-slate-700 outline-none ring-transparent ring-offset-2 ring-offset-white transition-all in-out
+                    h-full min-h-[2.5rem] border rounded-md p-2 mb-4 align-text-top text-slate-700 outline-none ring-transparent ring-offset-2 ring-offset-white transition-all in-out
                     focus:ring-cyan-400 focus:ring-2
-                    dark:ring-offset-slate-800 dark:border-0
-                    placeholder:font-light"
+                    dark:ring-offset-slate-800 dark:bg-slate-700/25 dark:border-slate-600 dark:text-white dark:font-light
+                    placeholder:font-light placeholder:text-slate-500
+                "
                 placeholder={props.placeholder}
+                name={props.name}
+                defaultValue={props.content}
+                spellCheck="false"
             />
         )
     }
@@ -135,27 +155,32 @@ export function Input(props) {
  * * Icon
  * Este componente es un icono
  * 
- * @param {string}   icon      — Establece el icono
- * @param {string}   size      — Establece el tamaño del icono
- * @param {string}   link      — Sí existe, se crea un enlace contenedor
- * @param {string}   style     — Establece estilos en línea
- * @param {string}   className — Establece clases adicionales para icono
- * @param {function} onClick   — Establece
+ * @param {string}   icon               — Establece el icono
+ * @param {string}   size               — Establece el tamaño del icono
+ * @param {string}   link               — Si existe, se crea un enlace contenedor
+ * @param {string}   style              — Establece estilos en línea
+ * @param {string}   className          — Establece clases adicionales para icono
+ * @param {string}   containerClassName — Establece clases adicionales para el contenedor
+ * @param {function} onClick            — Establece función onClick
  */
 export function Icon(props){
     function basic() {
         return (
             <i
-                className={props.icon + " " + props.size + " " + props.className + " transition-all ease-in-out"}
+                className={
+                    "transition-all ease-in-out" + (props.icon ? " " + props.icon : "") +
+                    (props.size ? " " + props.size : "") + (props.className ? " " + props.className : "")
+                }
                 onClick={props.onClick}
                 style={props.style}
             />
         )
     }
     // Verifica si existe prop link, si existe comprueba si es necesario usar target
+    const styles = "flex items-center"
     if (props.link) {
         return (
-            <div className="flex items-center">
+            <div className={styles + (props.containerClassName ? " " + props.containerClassName : "")}>
                 <a 
                     href={props.link}
                     target="_blank"
@@ -168,7 +193,7 @@ export function Icon(props){
         )
     } else {
         return (
-            <div className="flex items-center">
+            <div className={styles + (props.containerClassName ? " " + props.containerClassName : "")}>
                 {basic()}
             </div>
         )
@@ -258,7 +283,7 @@ export function Frame(props) {
  * 
  * @param {string} icon           — Establece el icono
  * @param {string} iconSize       — Establece el tamaño del icono
- * @param {string} iconLink       — Sí existe, se crea un enlace contenedor
+ * @param {string} iconLink       — Si existe, se crea un enlace contenedor
  * @param {string} iconClassName  — Establece clases adicionales para icono
  * @param {string} frameWidth     — Establece la anchura para frame
  * @param {string} frameHeight    — Establece la altura para frame
@@ -287,13 +312,16 @@ export function FrameGroup(props) {
  * * Collapse
  * Este componente contiene elementos con visibilidad alternada
  * 
- * @param {string} from — Establece la altura mínima a mostrar
- * @param {string} to   — Establece la altura máxima a mostrar
+ * @param {string} id                — Establece un sufijo para el id del colapsable
+ * @param {string} from              — Establece la altura mínima a mostrar
+ * @param {string} to                — Establece la altura máxima a mostrar
+ * @param {string} className         — Establece clases adicionales para contenedor
+ * @param {string} classNameCollapse — Establece clases adicionales para el colapsable
  */
 export function Collapse(props) {
     function setToggleCollapse(e) {
         const parent = e.target.parentElement.parentElement,
-              collapse = parent.querySelector("#collapse")
+              collapse = parent.querySelector("#collapse-" + props.id)
 
         if (collapse.classList.contains(props.from)) {
             toggleClasses(collapse, [props.to], [props.from])
@@ -314,7 +342,13 @@ export function Collapse(props) {
                     Mostrar
                 </Button>
             </div>
-            <div id="collapse" className={"transition-all duration-300 ease-in-out overflow-hidden " + props.from + (props.classNameCollapse ? " " + props.classNameCollapse : "")}>
+            <div 
+                id={"collapse-" + props.id}
+                className={
+                    "transition-all duration-300 ease-in-out overflow-hidden " + props.from +
+                    (props.classNameCollapse ? " " + props.classNameCollapse : "")
+                }
+            >
                 {props.children}
             </div>
         </div>
@@ -326,8 +360,10 @@ export function Collapse(props) {
  * Este componente es un contenedor que se inserta en los laterales del DOM
  * para mostrar información o componentes de navegación
  * 
- * @param {string} width  — Si existe se establece la anchura introducida, sino se establece el valor por defecto
- * @param {string} height — Si existe se establece la altura introducida, sino se establece el valor por defecto
+ * @param {string} id        — Establece un sufijo para el id
+ * @param {string} width     — Si existe se establece la anchura introducida, sino se establece el valor por defecto
+ * @param {string} height    — Si existe se establece la altura introducida, sino se establece el valor por defecto
+ * @param {string} className — Establece clases adicionales
  */
 export function SideBar(props) {
     function setWidth() {
@@ -337,14 +373,15 @@ export function SideBar(props) {
         return props.height ? props.height + " " : "h-[calc(100vh_-_2.5rem)] "
     }
     return (
-        <nav 
+        <aside
+            id={"sidebar-" + props.id}
             className={
                 setWidth() + setHeight() + "overflow-y-auto" +
                 (props.className ? " " + props.className : "")
             }
         >
             {props.children}
-        </nav>
+        </aside>
     )
 }
 /**
@@ -352,8 +389,10 @@ export function SideBar(props) {
  * * List
  * Este componente es una lista contenedora
  * 
- * @param {string} type   — Si existe se establece el tipo de lista introducida, sino se establece el valor por defecto
- * @param {string} margin — Si existe se establece el margen introducida, sino se establece el valor por defecto
+ * @param {string} type      — Si existe se establece el tipo de lista introducida, sino se establece el valor por defecto
+ * @param {string} margin    — Si existe se establece el margen introducida, sino se establece el valor por defecto
+ * @param {string} className — Establece clases adicionales
+ * @param {string} children  — Hereda elementos hijos del componente
  */
 export function List(props) {
     function setType() {

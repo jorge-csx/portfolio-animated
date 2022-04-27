@@ -10,8 +10,8 @@ import copyToClipBoard from "../scripts/copyToClipBoard"
 export function Label(props){
     return (
         <label className="
-            bg-gray-200/25 border px-4 py-2 rounded-full w-fit flex items-center text-sm
-            dark:bg-slate-700/25 dark:border-slate-600 dark:text-white dark:font-light
+            bg-gray-200/25 border px-4 py-2 rounded-full w-fit flex items-center text-sm font-medium
+            dark:bg-slate-700/25 dark:border-slate-600 dark:text-white dark:font-normal
         ">
             {props.children}
         </label>
@@ -37,11 +37,8 @@ export function ExpandableLabel(props) {
         function basic() {
             return (
                 <span 
-                    className="
-                        opacity-0 whitespace-nowrap transition-all ease-in-out delay-100
-                        group-hover:opacity-100
-                        group-focus:opacity-100
-                    "
+                    className="opacity-0 whitespace-nowrap transition-all ease-in-out delay-100
+                        group-hover:opacity-100 group-focus:opacity-100"
                     tabIndex="-1"    
                 >
                     {props.content}
@@ -58,8 +55,6 @@ export function ExpandableLabel(props) {
                     type="text"
                     readOnly
                     tabIndex="-1"
-                    title="copy-input-hidden"
-                    placeholder="Correo a copiar"
                 />
             )
         } 
@@ -100,6 +95,8 @@ export function ExpandableLabel(props) {
             )
         }
     }
+    // Enlace contenedor solo para dispositivos < md
+
     return (
         <div 
             className="

@@ -1,6 +1,6 @@
-import { Section, Icon } from "../components/Layout";
+import { Section, Icon, ImageZoomIn } from "../components/Layout";
 import { Label } from "../components/Labels";
-import { Title, Subtitle, Highlight, Description } from "../components/Text"
+import { Header, Title, Subtitle, Highlight, Description } from "../components/Text"
 /**
  * @component
  * * AboutMe
@@ -14,22 +14,29 @@ export default function AboutMe(){
                 bg-gray-50/50
                 dark:bg-gray-900/30"
         >
-            <div className="w-1/3 h-2/3 flex flex-col justify-between">
-                <Title>Competencias</Title>
-                <img 
+            {/* Primer contenedor */}
+            <div className="flex flex-col justify-between md:w-2/5 md:h-2/3">
+                <Header>
+                    Competencias
+                </Header>
+                <ImageZoomIn
                     src="images/illustrations/experience.png"
-                    className=" w-96"
+                    containerClassName="w-4/5 md:w-auto md:h-3/5 flex self-center"
                     alt="ilustración-experiencia"
                 />
-                <p>Soy aspirante a Ingeniería en Software y autodidacta, cuento con conocimientos en <Highlight>Html, Css, JavaScript, Sass, Tailwind, Figma...</Highlight></p>
+                <p>Soy autodidacta y aspirante a Ingenierio en Software, cuento con conocimientos en <Highlight>Html, Css, JavaScript, Sass, Tailwind, Figma...</Highlight></p>
             </div>
-
-            <div className="w-2/5 h-2/3">
-                <Title>Experiencia</Title>
+            {/* Segundo contenedor */}
+            <div className="md:w-2/5 md:h-2/3">   
+                <Header>
+                    Experiencia
+                </Header>
                 <div className="flex justify-between">
-                    <Subtitle>Académica</Subtitle>
+                    <Title>
+                        Académica
+                    </Title>
                     <Description>
-                        Cursado desde 2016 a 2019
+                        2016 --&gt; 2019
                         <Icon
                             icon="bx bx-time-five"
                             size="text-xl"
@@ -37,19 +44,22 @@ export default function AboutMe(){
                         />
                     </Description>
                 </div>
-                <p>Termine mi (Agregar título y lenguajes, asp, php, html, css) <Highlight>carrera técnica en programación web</Highlight> en la Escuela Industrial y Preparatoria Técnica Álvaro Obregón.</p>
-                <p>En donde adquirí <Highlight>conocimientos</Highlight> en:</p>
+                <p>Me gradué como <Highlight>Técnico en TIC con enfoque en programación web</Highlight> en la Escuela Álvaro Obregón San Nicolás.</p>
+                <p>Adquirí <Highlight>conocimientos</Highlight> en:</p>
 
-                <div className="flex flex-row flex-wrap gap-2 py-2 mb-6">
+                <div className="flex flex-wrap gap-3 mb-6 pt-4">
                     <Label>Programación web</Label>
+                    <Label>ASP</Label>
+                    <Label>PHP</Label>
                     <Label>Maquetación web</Label>
                     <Label>Bases de datos</Label>
                     <Label>Redes</Label>
                     <Label>Animación digital</Label>
-                    <Label>Mecanografía</Label>
                 </div>
 
-                <Subtitle>Laboral</Subtitle>
+                <Title>
+                    Laboral
+                </Title>
                 <p>— Estoy <Highlight>en búsqueda de experiencia laboral</Highlight> en este ámbito.</p>
             </div>
         </Section>

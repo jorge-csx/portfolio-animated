@@ -69,6 +69,7 @@ export default function ProjectSerestech() {
                     Librerías
                 </Title>
                 <Collapse
+                    id="librerias"
                     from="max-h-[9rem]"
                     to="max-h-[62.5rem]"
                     classNameCollapse="w-full flex flex-wrap gap-4 border dark:border-slate-600 rounded-md p-4"
@@ -530,7 +531,6 @@ export default function ProjectSerestech() {
                 <Structure/>
                 <Footer/>
             </article>
-            <SideBar/>
         </Document>
     )
 }

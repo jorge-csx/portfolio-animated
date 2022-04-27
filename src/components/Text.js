@@ -10,7 +10,7 @@ export function Display(props) {
     return (
         <h1 
             className={ 
-                "text-5xl font-semibold font-display mb-3 dark:text-white" +
+                "text-4xl md:text-5xl md:text-left font-semibold font-display mb-3 dark:text-white" +
                 (props.className ? " " + props.className : "")
             }
         >

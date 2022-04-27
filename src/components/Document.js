@@ -58,8 +58,6 @@ export default function Document(props) {
      * @function
      * Esta función recupera los encabezados, los formatea y además, a partir de ellos,
      * asigna los items con enlaces para la SideBar
-     * 
-     * @param {object} actualDoc — Documento actual del que se extraerán encabezados
      */
     const setItemsSideBar = () => {
         if (actualDoc) {
@@ -134,16 +132,18 @@ export default function Document(props) {
     return (
         <div
             id={"doc-project"}
-            className={"w-full" + (props.className ? " " + props.className : "")}
+            className={"w-full hidden" + (props.className ? " " + props.className : "")}
             ref={doc}
         >
-            <SideBar 
+            <SideBar
+                id="doc"
                 height="h-[calc(100vh_-_9.188rem)]"
-                className="sticky top-0 p-4 mt-10"
+                className="sticky top-0 p-4 mt-10 hidden lg:block"
             >
                 {setItemsSideBar()}
             </SideBar>
             {props.children}
+            <SideBar className="hidden lg:block"/>
         </div>
     )
 }
