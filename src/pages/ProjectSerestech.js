@@ -1,9 +1,6 @@
 import Document from "../components/Document"
 import { Title, Subtitle, Description, Highlight, Bold, Header } from "../components/Text"
-import { Frame, FrameGroup, Icon, Collapse, SideBar, ImageZoomIn, List } from "../components/Layout"
-import { useEffect, useRef, useState } from "react"
-import Button from "../components/Button"
-import toggleClasses from "../scripts/toggleClasses"
+import { Frame, FrameGroup, Icon, Collapse, ImageZoomIn, List } from "../components/Layout"
 /**
  * @component
  * * ProjectSerestech
@@ -513,7 +510,7 @@ export default function ProjectSerestech() {
                         icon="bx bxl-github"
                         size="text-3xl"
                         className="hover:text-purple-500"
-                        link="#"
+                        link="https://github.com/jorgesoriax/serestech"
                     />
                 </Frame>
                 <p className="col-span-2 mb-0 h-fit">

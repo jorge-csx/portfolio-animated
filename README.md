@@ -6,3 +6,4 @@ Experimental portfolio to share my best works.
 * Tailwind
 * Boxicons
 * Font Awesome
+* EmailJS

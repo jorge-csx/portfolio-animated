@@ -5,6 +5,7 @@ import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
 import useObserver from "./customHooks/useObserver";
 import { useEffect } from "react";
 import toggleClasses from "./scripts/toggleClasses"
+import Theme from "./components/Theme";
 
 function App() {
   const [observer, setElements, entries] = useObserver({
@@ -19,6 +20,7 @@ function App() {
 
   // Efecto que se ejecuta cada una entry es intersectada
   useEffect(() => {
+    <Theme/>
     const indicators = document.querySelectorAll('#navbar ul li a')
 
     entries.forEach(entry => {

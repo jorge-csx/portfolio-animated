@@ -143,7 +143,10 @@ export default function Document(props) {
                 {setItemsSideBar()}
             </SideBar>
             {props.children}
-            <SideBar className="hidden lg:block"/>
+            <SideBar
+                id="blank"
+                className="hidden lg:block"
+            />
         </div>
     )
 }

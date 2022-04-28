@@ -30,7 +30,7 @@
             },
             {
                 "title" : "Repositorio",
-                "url"  : "#",
+                "url"  : "https://github.com/jorgesoriax/serestech",
                 "icon" : "bx bxl-github",
                 "className" : "hover:text-purple-500"
             }
