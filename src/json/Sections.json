@@ -1,18 +1,18 @@
 [
     {
-        "title" : "Inicio",
-        "link" : "#home"
+        "title": "Inicio",
+        "link": "#home"
     },
     {
-        "title" : "Experiencia",
-        "link" : "#experience"
+        "title": "Experiencia",
+        "link": "#experience"
     },
     {
-        "title" : "Proyectos",
-        "link" : "#projects"
+        "title": "Proyectos",
+        "link": "#projects"
     },
     {
-        "title" : "Contacto",
-        "link" : "#contact"
+        "title": "Contacto",
+        "link": "#contact"
     }
 ]

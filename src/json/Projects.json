@@ -1,65 +1,64 @@
 [
     {
-        "title" : "Catálogo SeresTech",
-        "alt"   : "serestech-catalogo-panel",
-        "cover" : "images/projects/serestech-catalog/cover.webp",
-        "langs" : [
-            { 
-                "title" : "Laravel",
-                "icon" : "fa-brands fa-laravel",
-                "color" : "#F9322C"
+        "title": "Catálogo SeresTech",
+        "alt": "serestech-catalogo-panel",
+        "cover": "images/projects/serestech-catalog/cover.webp",
+        "langs": [
+            {
+                "title": "Laravel",
+                "icon": "fa-brands fa-laravel",
+                "color": "#F9322C"
             },
             {
-                "title" : "Sass",
-                "icon" : "fa-brands fa-sass",
-                "color" : "#CF649A"
-            }
-            ,
-            { 
-                "title" : "Jquery",
-                "icon" : "bx bxl-jquery",
-                "color" : "#78CFF5"
-            }
-        ],
-        "links" : [
-            {
-                "title" : "serestech.com.mx",
-                "url"  : "https://serestech.com.mx",
-                "icon" : "bx bx-link",
-                "className" : "hover:text-cyan-400"
+                "title": "Sass",
+                "icon": "fa-brands fa-sass",
+                "color": "#CF649A"
             },
             {
-                "title" : "Repositorio",
-                "url"  : "https://github.com/jorgesoriax/serestech",
-                "icon" : "bx bxl-github",
-                "className" : "hover:text-purple-500"
+                "title": "Jquery",
+                "icon": "bx bxl-jquery",
+                "color": "#78CFF5"
             }
         ],
-        "page" : "serestech"
+        "links": [
+            {
+                "title": "serestech.com.mx",
+                "url": "https://serestech.com.mx",
+                "icon": "bx bx-link",
+                "className": "hover:text-cyan-400"
+            },
+            {
+                "title": "Repositorio",
+                "url": "https://github.com/jorgesoriax/serestech",
+                "icon": "bx bxl-github",
+                "className": "hover:text-purple-500"
+            }
+        ],
+        "page": "serestech"
     },
     {
-        "title" : "Proximamente...",
-        "alt"   : "here",
-        "cover" : "images/projects/test/cover.jpg",
-        "langs" : [
-            { 
-                "title" : "React",
-                "icon" : "bx bxl-react",
-                "color" : "#61DAFB"
+        "title": "Proximamente...",
+        "alt": "here",
+        "cover": "images/projects/test/cover.jpg",
+        "langs": [
+            {
+                "title": "React",
+                "icon": "bx bxl-react",
+                "color": "#61DAFB"
             }
         ],
-        "links" : [
+        "links": [
             {
-                "title" : "Sitio web",
-                "url"  : "#",
-                "icon" : "bx bx-link"
+                "title": "Sitio web",
+                "url": "#",
+                "icon": "bx bx-link"
             },
             {
-                "title" : "Repositorio",
-                "url"  : "#",
-                "icon" : "bx bxl-github"
+                "title": "Repositorio",
+                "url": "#",
+                "icon": "bx bxl-github"
             }
         ],
-        "page" : "alternative"
+        "page": "alternative"
     }
 ]
